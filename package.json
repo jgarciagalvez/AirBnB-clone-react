@@ -1,0 +1,12 @@
+{
+  "name": "airbnb-react",
+  "version": "1.0.0",
+  "description": "Airbnb React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Haiku Academy",
+  "license": "ISC"
+}
