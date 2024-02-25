@@ -1,4 +1,4 @@
-function App() {
+function Home() {
   return (
     <div>
       <p>Hello from Airbnb!</p>
@@ -6,4 +6,4 @@ function App() {
   )
 }
 
-export default App
+export default Home
