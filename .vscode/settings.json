@@ -3,7 +3,7 @@
   "editor.formatOnType": true,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "prettier.configPath": "",
+  "prettier.configPath": "../.prettierrc",
   "editor.formatOnSaveMode": "file",
   "files.autoSave": "onFocusChange",
   "vs-code-prettier-eslint.prettierLast": false,
