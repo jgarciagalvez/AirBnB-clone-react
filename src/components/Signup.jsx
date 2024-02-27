@@ -1,8 +1,8 @@
 function signup() {
-    return (
-        <div>
-            <p>Hello from signup</p>
-        </div>
+  return (
+    <div>
+      <p>Hello from signup</p>
+    </div>
 )
 }
 
