@@ -4,6 +4,7 @@ import Houses from './components/Houses'
 import Profile from './components/Profile'
 import Listings from './components/Listings'
 import HouseEdit from './components/HouseEdit'
+import Signup from './components/Signup'
 
 function Router() {
     return (
@@ -15,6 +16,7 @@ function Router() {
                 <Route path='/houses/:id' element={<Houses />} />
                 <Route path='/houses' element={<Houses />} />
                 <Route path='/houses/:id/edit' element={<HouseEdit />} />
+                <Route path='/signup' element={<Signup />} />
             </Routes>
         </BrowserRouter>
     )
