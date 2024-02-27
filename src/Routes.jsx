@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Houses from './components/Houses'
 import Profile from './components/Profile'
 import Listings from './components/Listings'
-import Houses from './components/Houses'
 import HouseEdit from './components/HouseEdit'
 
 function Router() {
