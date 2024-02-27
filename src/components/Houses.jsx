@@ -2,7 +2,7 @@ function Houses() {
   return (
     <div className="container mx-auto">
       {/* searches for houses */}
-      <div className="flex">
+      <div className="flex gap-4 grid-cols-5 grid-rows-3">
         <div>1</div>
         <div>2</div>
         <div>3</div>
