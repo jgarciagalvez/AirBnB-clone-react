@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Houses from './components/Houses'
+import House from './components/House'
 import Profile from './components/Profile'
 import Listings from './components/Listings'
 import HouseEdit from './components/HouseEdit'
