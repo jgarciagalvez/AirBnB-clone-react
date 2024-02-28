@@ -12,7 +12,7 @@ function Houses() {
         <div className="bg-sky-500">5</div>
         <div className="bg-sky-500">6</div>
       </div>
-      <div className="grid gap-4 grid-cols-5 grid-rows-2 bg-pink-200">
+      <div className="grid gap-4 grid-cols-5 grid-rows-2 mt-3">
         <HouseCard />
         <HouseCard />
         <HouseCard />
