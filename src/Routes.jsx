@@ -14,7 +14,7 @@ function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Houses />} />
+        <Route path="/" element={<Facebook />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/listings" element={<Listings />} />
         <Route path="/houses/:id" element={<Houses />} />
