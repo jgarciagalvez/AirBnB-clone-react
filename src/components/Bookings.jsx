@@ -4,7 +4,7 @@ function bookings() {
   return (
     <div className="container mx-auto">
       <Nav />
-      <div className="grid grid-cols-5 gap-3">
+      <div className="grid md:grid-cols-5 gap-3 sm:grid-cols-2">
         <div>
           <HouseCard />
         </div>

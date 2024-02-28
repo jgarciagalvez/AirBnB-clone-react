@@ -4,7 +4,7 @@ function HouseCard() {
   return (
     <div className="border border-solid border-stone-200 rounded-sm gap-3">
       <div className="border border-solid border-stone-200 justify-center">
-        image
+        <img src="https://placehold.co/200x150" alt="" />
       </div>
       <div className="p-2">
         <p className="font-bold text-l">Phuket, Thailand</p>
