@@ -8,7 +8,29 @@ function listings() {
         <div className="bg-pink-600">1</div>
         <div className="bg-pink-600">2</div>
       </div>
-      <HouseCard />
+      <div className="grid grid-cols-5 gap-3">
+        <div>
+          <HouseCard />
+        </div>
+        <div>
+          <HouseCard />
+        </div>
+        <div>
+          <HouseCard />
+        </div>
+        <div>
+          <HouseCard />
+        </div>
+        <div>
+          <HouseCard />
+        </div>
+        <div>
+          <HouseCard />
+        </div>
+        <div>
+          <HouseCard />
+        </div>
+      </div>
     </div>
   )
 }
