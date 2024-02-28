@@ -1,4 +1,4 @@
-function Houses() {
+function House() {
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-2 gap-10 grid-rows-1 bg-pink-200">
@@ -42,4 +42,4 @@ function Houses() {
   )
 }
 
-export default Houses
+export default House
