@@ -1,9 +1,11 @@
 import HouseCard from './HouseCard'
 import Filters from './Filters'
+import Nav from './Nav'
 
 function Houses() {
   return (
     <div className="container mx-auto">
+      <Nav />
       {/* Filters */}
       <Filters />
 

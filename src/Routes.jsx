@@ -8,7 +8,6 @@ import HouseEdit from './components/HouseEdit'
 import Bookings from './components/Bookings'
 import Signup from './components/Signup'
 import Login from './components/Login'
-
 function Router() {
   return (
     <BrowserRouter>
