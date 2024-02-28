@@ -1,6 +1,8 @@
+import Nav from './Nav'
 function bookings() {
   return (
-    <>
+    <div className="container mx-auto">
+      <Nav />
       <div className="grid grid-cols-5 gap-3">
         <div className="bg-pink-600">1</div>
         <div className="bg-pink-600">2</div>
@@ -13,7 +15,7 @@ function bookings() {
         <div className="bg-pink-600">9</div>
         <div className="bg-pink-600">10</div>
       </div>
-    </>
+    </div>
   )
 }
 
