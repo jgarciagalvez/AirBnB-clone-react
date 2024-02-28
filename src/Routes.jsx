@@ -1,13 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Houses from './components/Houses'
-import House from './components/House'
-import Profile from './components/Profile'
-import Listings from './components/Listings'
-import HouseEdit from './components/HouseEdit'
-import Bookings from './components/Bookings'
-import Signup from './components/Signup'
-import Login from './components/Login'
+import Houses from './components/pages/Houses'
+// import House from './components/pages/House'
+import Profile from './components/pages/Profile'
+import Listings from './components/pages/Listings'
+import HouseEdit from './components/pages/HouseEdit'
+import Bookings from './components/pages/Bookings'
+import Signup from './components/pages/Signup'
+import Login from './components/pages/Login'
+import Facebook from './components/facebook/Facebook'
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/facebook" element={<Facebook />} />
       </Routes>
     </BrowserRouter>
   )
