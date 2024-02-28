@@ -2,8 +2,8 @@ import IconChatbubbleEllipsesOutline from './icons/reviewsIcon'
 
 function HouseCard() {
   return (
-    <div className="border border-solid border-stone-400 rounded-sm gap-3">
-      <div className="border border-solid border-pink-400 justify-center">
+    <div className="border border-solid border-stone-200 rounded-sm gap-3">
+      <div className="border border-solid border-stone-200 justify-center">
         image
       </div>
       <div className="p-2">
