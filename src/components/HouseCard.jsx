@@ -2,9 +2,9 @@ import IconChatbubbleEllipsesOutline from './icons/reviewsIcon'
 
 function HouseCard() {
   return (
-    <div className="border border-solid border-stone-400 rounded-sm gap-3">
-      <div className="border border-solid border-pink-400 justify-center">
-        image
+    <div className="border border-solid border-stone-200 rounded-sm gap-3">
+      <div className="border border-solid border-stone-200 justify-center">
+        <img src="https://placehold.co/200x150" alt="" />
       </div>
       <div className="p-2">
         <p className="font-bold text-l">Phuket, Thailand</p>
