@@ -1,6 +1,8 @@
+import Nav from './Nav'
 function Houses() {
   return (
     <div className="container mx-auto">
+      <Nav />
       {/* searches for houses */}
       <div className="flex justify-between gap-1 grid-cols-5 grid-rows-1 bg-sky-200">
         <div className="bg-sky-500">1</div>

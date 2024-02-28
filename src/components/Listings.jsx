@@ -1,6 +1,8 @@
+import Nav from './Nav'
 function listings() {
   return (
-    <>
+    <div className="container mx-auto">
+      <Nav />
       <div className="grid grid-cols-2 gap-5 bg-pink-200">
         <div className="bg-pink-600">1</div>
         <div className="bg-pink-600">2</div>
@@ -14,7 +16,7 @@ function listings() {
         <div className="bg-pink-600">6</div>
         <div className="bg-pink-600">7</div>
       </div>
-    </>
+    </div>
   )
 }
 
