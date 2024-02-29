@@ -1,12 +1,18 @@
-// import IconChatbubbleEllipsesOutline from './icons/reviewsIcon'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCommentDots, faStar } from '@fortawesome/free-solid-svg-icons'
 
 export default function Reviews() {
   return (
     <div className="container mx-auto gap-2">
       <div className="flex gap-2 items-center">
-        <div className="inline">{/* <IconChatbubbleEllipsesOutline /> */}</div>
         <div className="inline">
-          <span className="text-lg font-bold">34 Reviews</span>
+          <FontAwesomeIcon icon={faCommentDots} />
+          <span className="text-lg font-bold"> 34 Reviews</span>
+          <div>
+            <span className="text-sm">Average Rating: 2.3 </span>
+
+            <FontAwesomeIcon icon={faStar} />
+          </div>
         </div>
       </div>
       <div className="space-y-3">
@@ -22,16 +28,20 @@ function Review() {
     <div className="border border-solid border-[#E5E7EB] rounded-lg p-3 m-2 text-sm">
       <div className="flex gap-2">
         <div className="w-12 h-12 border-2 border-solid border-white rounded-full">
-          IMG
+          <img
+            className="rounded-full"
+            src="https://randomuser.me/api/portraits/men/84.jpg"
+            alt="reviewer"
+          />
         </div>
         <div>
           <div className="text-[#64748B]">5 January 2024</div>
-          <div>Sandra Berger</div>
+          <div>Sandro Berger</div>
         </div>
       </div>
       <div className="flex gap-2 my-2">
-        <div>Stars</div>
-        <div>4.7</div>
+        <span>4.7</span>
+        <FontAwesomeIcon icon={faStar} />
       </div>
       <div className="flex">
         <p>
