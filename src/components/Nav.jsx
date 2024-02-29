@@ -8,7 +8,7 @@ function Nav() {
           alt="AirBnB Logo"
         />{' '}
       </div>
-      <div className="flex gap-3 text-xs m">
+      <div className="flex gap-3 text-xs mt-4">
         <div className="border-2 h-7 rounded-sm p-1">
           <Link to="/bookings">My Bookings </Link>
         </div>
