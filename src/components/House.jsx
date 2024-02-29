@@ -47,6 +47,12 @@ function House() {
           <div className="border-2 border-gray-400 p-4">
             <div>Leave a Review</div>
             <div>0</div>
+            <div>
+              <textarea className="w-full border-black-500 border-2 rows-5"></textarea>
+              <button className="bg-black text-white m-1 p-1.5 rounded-m">
+                Submit
+              </button>
+            </div>
           </div>
         </div>
       </div>
