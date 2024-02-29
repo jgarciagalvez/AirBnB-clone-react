@@ -6,14 +6,14 @@ function House() {
   return (
     <div className="ml-10 mr-10">
       <Nav />
-      <div className="grid grid-cols-2 gap-10 grid-rows-1 bg-pink-200">
-        <div className="bg-pink-500">
+      <div className="grid grid-cols-2 gap-10 grid-rows-1 ">
+        <div className="">
           <img
             src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png"
             alt=""
           />
         </div>
-        <div className="bg-pink-500">
+        <div className="">
           <Gallery />
         </div>
       </div>
@@ -24,7 +24,13 @@ function House() {
             <NumRooms /> Rooms - <NumBaths /> Bathrooms
           </div>
           <div className=" flex gap-2  m-5">
-            <div className="bg-sky-500">3.1</div>
+            <div className="bg-sky-500">
+              <img
+                className="h-12 rounded-lg"
+                src="https://randomuser.me/api/portraits/women/85.jpg"
+                alt="user"
+              />
+            </div>
             <span>
               <div className="text-sm text-slate-400">Hosted By</div>
               <Host />
