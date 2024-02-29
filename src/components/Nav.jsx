@@ -9,13 +9,13 @@ function Nav() {
         />{' '}
       </div>
       <div className="flex gap-3 text-xs mt-4">
-        <div className="border-2 h-7 rounded-sm p-1">
+        <div className="border-2 h-7 rounded-sm p-1 hover:shadow-md">
           <Link to="/bookings">My Bookings </Link>
         </div>
-        <div className="border-2 h-7 rounded-sm p-1">
+        <div className="border-2 h-7 rounded-sm p-1 hover:shadow-md">
           <Link to="/listings">Listings</Link>
         </div>
-        <div className="border-2 h-7 rounded-sm p-1">
+        <div className="border-2 h-7 rounded-sm p-1 hover:shadow-md">
           <img
             className="h-4 inline rounded-lg"
             src="https://randomuser.me/api/portraits/men/15.jpg"
