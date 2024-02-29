@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 
 function signup() {
-  const classNameInput =
-    'border border-[#E5E7EB] rounded-md h-10 placeholder:pl-4'
+  const classNameInput = 'border border-[#E5E7EB] rounded-md h-10 pl-4'
   const classNameLabel = 'text-[#64748B] pb-1 mt-2'
   return (
     <div className="container mx-auto flex justify-center">
