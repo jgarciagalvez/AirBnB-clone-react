@@ -7,7 +7,12 @@ function House() {
     <div className="ml-10 mr-10">
       <Nav />
       <div className="grid grid-cols-2 gap-10 grid-rows-1 bg-pink-200">
-        <div className="bg-pink-500">1</div>
+        <div className="bg-pink-500">
+          <img
+            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png"
+            alt=""
+          />
+        </div>
         <div className="bg-pink-500">
           <Gallery />
         </div>
