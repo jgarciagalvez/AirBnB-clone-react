@@ -1,12 +1,10 @@
-import IconChatbubbleEllipsesOutline from './icons/reviewsIcon'
+// import IconChatbubbleEllipsesOutline from './icons/reviewsIcon'
 
 export default function Reviews() {
   return (
     <div className="container mx-auto gap-2">
       <div className="flex gap-2 items-center">
-        <div className="inline">
-          <IconChatbubbleEllipsesOutline />
-        </div>
+        <div className="inline">{/* <IconChatbubbleEllipsesOutline /> */}</div>
         <div className="inline">
           <span className="text-lg font-bold">34 Reviews</span>
         </div>
