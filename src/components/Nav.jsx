@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 function Nav() {
   return (
-    <div className="flex grid-cols-2 grid-rows-1 justify-between">
+    <div className="flex grid-cols-2 grid-rows-1 justify-between items-center">
       <div>
         <img
           src="https://www.vectorlogo.zone/logos/airbnb/airbnb-ar21.svg"
@@ -9,7 +9,7 @@ function Nav() {
           className="h-[48px]"
         />{' '}
       </div>
-      <div className="flex gap-3 text-xs mt-4">
+      <div className="flex gap-3 text-xs">
         <Link
           to="/bookings"
           className="border h-7 rounded-md p-1 hover:shadow-md"
