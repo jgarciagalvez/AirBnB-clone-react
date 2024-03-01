@@ -13,6 +13,7 @@ function signup() {
             class="h-[24px]"
           />
         </div>
+        {/*form and all text fields */}
         <div className="p-1">
           <form className="flex flex-col">
             <label className={classNameLabel}>First Name</label>
@@ -29,6 +30,7 @@ function signup() {
               placeholder="https://..."
               className={classNameInput}
             />
+            {/*submits the form*/}
             <button className="bg-[#FB7185] text-white text-lg p-2 my-5 rounded-md">
               Register
             </button>
