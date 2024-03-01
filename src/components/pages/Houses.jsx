@@ -1,6 +1,6 @@
-import HouseCard from './HouseCard'
-import Filters from './Filters'
-import Nav from './Nav'
+import HouseCard from '../ui/HouseCard'
+import Filters from '../ui/Filters'
+import Nav from '../ui/Nav'
 
 function Houses() {
   return (
