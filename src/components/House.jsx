@@ -4,7 +4,7 @@ import Nav from './Nav'
 
 function House() {
   return (
-    <div className="ml-10 mr-10">
+    <div className="container mx-auto">
       <Nav />
       <div className="grid grid-cols-2 gap-10 grid-rows-1 ">
         <div className="">
@@ -17,7 +17,7 @@ function House() {
           <Gallery />
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-36  ">
+      <div className="grid grid-cols-3 gap-5  ">
         <div className=" col-span-2">
           <Location />
           <div className="text-xs m-5">
@@ -41,25 +41,49 @@ function House() {
             <Reviews />
           </div>
         </div>
-        <div>
-          <div className="flex grid-cols-2 justify-between grid-rows-1 gap-2 border-2 border-gray-400 p-3 m-5">
-            <div>
-              <div>
-                <NightlyPrice />
-                <span className="text-sm text-gray-400"> / night</span>
+        <div className="col-span-1">
+          <div className="grid gap-2 border rounded border-gray-400 p-3 mt-4 mb-4">
+            <h6 className="font-bold">
+              $120
+              <span className="text-sm text-gray-400"> / night</span>
+            </h6>
+
+            <form className="flex flex-col gap-2 w-full ">
+              <div className="flex gap-2">
+                <div className="flex flex-col">
+                  <label className="text-sm font-thin text-gray-400">
+                    Check-in
+                  </label>
+                  <input className="border gap-2" type="date" />
+                </div>
+                <div className="flex flex-col">
+                  <label className="text-sm font-thin text-gray-400">
+                    Check-out
+                  </label>
+                  <input className="border" type="date" />
+                </div>
               </div>
-              <div>
-                <NumOfNights />
-                Nights = <span className="font-bold">$360</span>
+              <textarea
+                rows="7"
+                className="border w-full"
+                placeholder="Please send a message to the host..."
+              ></textarea>
+              <div className="flex justify-between items-center">
+                <span>
+                  3 nights = <span className="font-bold">360</span>
+                </span>
+                <button className="rounded bg-[#FB7185] text-white p-1 px-2">
+                  Reserve
+                </button>
               </div>
-            </div>
-            <div className="bg-sky-500">4.2 </div>
+            </form>
           </div>
-          <div className="border-2 border-gray-400 p-4">
+
+          <div className="border rounded border-gray-400 p-4">
             <div>Leave a Review</div>
             <div>0</div>
             <div>
-              <textarea className="w-full border-black-500 border-2 rows-5"></textarea>
+              <textarea className="w-full border-black-500 border rows-5"></textarea>
               <button className="bg-black text-white m-1 p-1.5 rounded-m">
                 Submit
               </button>
@@ -69,14 +93,6 @@ function House() {
       </div>
     </div>
   )
-}
-
-function NightlyPrice() {
-  return <span className="font-bold">$120</span>
-}
-
-function NumOfNights() {
-  return <span>3 </span>
 }
 
 function Location() {
