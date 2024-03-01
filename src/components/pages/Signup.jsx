@@ -2,15 +2,15 @@ import { Link } from 'react-router-dom'
 
 function signup() {
   const classNameInput = 'border border-[#E5E7EB] rounded-md h-10 pl-4'
-  const classNameLabel = 'text-[#64748B] pb-1 mt-2'
+  const classNameLabel = 'text-[#64748B] pb-1 mt-2 decoration-0'
   return (
     <div className="container mx-auto flex justify-center">
-      <div className="border border-[#E5E7EB] shadow-sm rounded-lg p-4 mt-4 w-[320px]">
+      <div className="border border-[#E5E7EB] shadow-md rounded-lg p-4 mt-4 w-[320px]">
         <div className="flex justify-center">
           <img
             src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
             alt="AirBnB Logo"
-            class="h-7"
+            class="h-[24px]"
           />
         </div>
         <div className="p-1">
@@ -37,9 +37,12 @@ function signup() {
         <div className="ml-1 text-sm">
           <p>
             Already have an account?
-            <span className="text-[#F43F5E]">
-              <Link to="/login"> Login here</Link>
-            </span>
+            <Link
+              to="/login"
+              className="underline underline-offset-4 text-[#F43F5E] ml-2"
+            >
+              Login here
+            </Link>
           </p>
         </div>
       </div>
