@@ -14,7 +14,7 @@ function Nav() {
           to="/bookings"
           className="border h-7 rounded-md p-1 hover:shadow-md"
         >
-          My Bookings{' '}
+          My Bookings
         </Link>
 
         <Link
