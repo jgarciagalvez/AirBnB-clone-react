@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
-// import { faHouse } from '@awesome.me/kit-KIT_CODE/icons/classic/solid'
 
 function HouseCard() {
   return (
