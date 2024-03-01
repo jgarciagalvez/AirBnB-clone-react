@@ -6,6 +6,7 @@ function Nav() {
         <img
           src="https://www.vectorlogo.zone/logos/airbnb/airbnb-ar21.svg"
           alt="AirBnB Logo"
+          className="h-[48px]"
         />{' '}
       </div>
       <div className="flex gap-3 text-xs mt-4">

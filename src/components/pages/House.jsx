@@ -1,6 +1,6 @@
-import Gallery from './Gallery'
-import Reviews from './Reviews'
-import Nav from './Nav'
+import Gallery from '../ui/Gallery'
+import Reviews from '../ui/Reviews'
+import Nav from '../ui/Nav'
 
 function House() {
   return (

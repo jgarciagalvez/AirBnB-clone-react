@@ -1,4 +1,4 @@
-import Nav from './Nav'
+import Nav from '../ui/Nav'
 function profile() {
   const classNameInput = 'border border-[#E5E7EB] rounded-sm h-10 w-full pl-4'
   const classNameLabel = 'text-[#64748B] pb-1 mt-4 block'

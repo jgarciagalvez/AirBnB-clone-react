@@ -1,4 +1,4 @@
-import Nav from './Nav'
+import Nav from '../ui/Nav'
 import { Link } from 'react-router-dom'
 
 function HouseEdit() {
