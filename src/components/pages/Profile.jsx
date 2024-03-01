@@ -1,7 +1,7 @@
 import Nav from '../ui/Nav'
 function profile() {
   const classNameInput = 'border border-[#E5E7EB] rounded-sm h-10 w-full pl-4'
-  const classNameLabel = 'text-[#64748B] pb-1 mt-4 block'
+  const classNameLabel = 'text-[#64748B] pb-1 mt-4 block font-extralight'
   return (
     <div className="container mx-auto">
       <Nav />
@@ -37,7 +37,7 @@ function profile() {
               <button className="bg-[#FB7185] text-white text-md py-2 px-5 rounded-md">
                 Save Changes
               </button>
-              <button className="border border-[#E5E7EB] text-md py-2 px-5 rounded-md">
+              <button className="border border-[#E5E7EB] text-sm p-1 rounded-md">
                 Logout
               </button>
             </div>
