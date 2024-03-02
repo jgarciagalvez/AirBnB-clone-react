@@ -86,8 +86,6 @@ function House() {
   )
 }
 
-// Extra Component for Booking and Leave Review
-
 function BookingForm() {
   return (
     <div className="col-span-1">
