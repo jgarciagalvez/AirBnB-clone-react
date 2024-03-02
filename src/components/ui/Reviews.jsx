@@ -7,7 +7,7 @@ export default function Reviews() {
     <div className="container mx-auto gap-2">
       <div className="flex gap-2 items-center">
         <div className="inline">
-          <FontAwesomeIcon icon={faCommentDots} />
+          <FontAwesomeIcon icon={faCommentDots} className="text-[#94A3B8]" />
           <span className="text-lg font-bold"> 34 Reviews</span>
           <div>
             <span className="text-sm">Average Rating: 2.3 </span>
