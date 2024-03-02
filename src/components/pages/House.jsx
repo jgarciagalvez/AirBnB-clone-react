@@ -3,6 +3,19 @@ import Reviews from '../ui/Reviews'
 import Nav from '../ui/Nav'
 
 function House() {
+  let house = {
+    location: 'Koh Phangan, Thailand',
+    rooms: 3,
+    bathrooms: 4,
+    description: 'This house.... is a very very very fine house!',
+    price: 700,
+    rating: 4.2,
+    host: {
+      firstname: 'Barbara',
+      lastname: 'Streisand',
+      picture: 'https://randomuser.me/api/portraits/women/51.jpg'
+    }
+  }
   return (
     <div className="container mx-auto">
       {/* Navigation Menu */}
@@ -28,44 +41,28 @@ function House() {
 
           <div className="w-2/3 flex flex-col gap-5">
             <div>
-              <p className="text-xl font-bold">Phuket, Thailand</p>
-              <p className="text-xs text-[#64748B]">2 Rooms · 2 Bathrooms</p>
+              <p className="text-xl font-bold">{house.location}</p>
+              <p className="text-xs text-[#64748B]">
+                {house.rooms} Rooms · {house.bathrooms} Bathrooms
+              </p>
             </div>
             <div className=" flex gap-3">
               <img
                 className="h-12 rounded-full"
-                src="https://randomuser.me/api/portraits/women/85.jpg"
+                src={house.host.picture}
                 alt="user"
               />
               <div>
                 <p className="text-sm text-[#64748B]">Hosted By</p>
-                <p>Linda Smith</p>
+                <p>
+                  {house.host.firstname} {house.host.lastname}
+                </p>
               </div>
             </div>
-            <div className="text-sm">
-              Welcome to "Cloud Haven," an ethereal retreat nestled in the heart
-              of the Floating Isles—an exclusive celestial escape that defies
-              earthly conventions. Immerse yourself in the awe-inspiring
-              ambiance of our levitating abodes, where gravity takes a vacation,
-              and every moment feels like a dream. Your sanctuary in the sky
-              boasts panoramic views of the ever-shifting cloudscapes, with beds
-              that hover gently above the ground, providing a restful slumber
-              amidst the clouds. Our ethereal hosts, luminescent beings known as
-              Skykeepers, ensure your stay is both enchanting and otherworldly.
-              Enjoy the sensation of dining on our cloud-borne terrace, where
-              the menu is as diverse as the hues of the sunset. Venture beyond
-              your celestial haven to discover floating gardens, where rare,
-              otherworldly flora flourishes in the weightless atmosphere. Engage
-              in celestial activities such as starlight yoga and cloud painting,
-              or simply unwind in our spa, where treatments harness the
-              rejuvenating power of cosmic energies. "Cloud Haven" is not just a
-              getaway; it's a transcendental experience where the ordinary is
-              left far below, and the extraordinary awaits you in the skies.
-              Book your stay now and elevate your journey to new heights!
-            </div>
+            <div className="text-sm">{house.description}</div>
           </div>
           <div className="align-top">
-            <BookingForm />
+            <BookingForm house={house} />
           </div>
         </div>
 
@@ -86,12 +83,12 @@ function House() {
   )
 }
 
-function BookingForm() {
+function BookingForm({ house }) {
   return (
     <div className="col-span-1">
       <div className="grid gap-2 border rounded border-[#E5E7EB] p-3 mb-4">
         <h6 className="font-bold">
-          $120
+          ${house.price}
           <span className="text-sm text-gray-400"> / night</span>
         </h6>
         <form className="flex flex-col gap-2 w-full ">
