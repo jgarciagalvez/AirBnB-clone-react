@@ -1,12 +1,13 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCommentDots, faStar } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 
 export default function Reviews() {
   return (
     <div className="container mx-auto gap-2">
       <div className="flex gap-2 items-center">
         <div className="inline">
-          <FontAwesomeIcon icon={faCommentDots} />
+          <FontAwesomeIcon icon={faCommentDots} className="text-[#94A3B8]" />
           <span className="text-lg font-bold"> 34 Reviews</span>
           <div>
             <span className="text-sm">Average Rating: 2.3 </span>

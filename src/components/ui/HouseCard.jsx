@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faCommentDots } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 
 function HouseCard() {
   return (
@@ -8,8 +9,7 @@ function HouseCard() {
       <div className="border border-solid border-stone-200 rounded-lg gap-3 hover:shadow-lg">
         <div className="rounded-t-lg justify-center">
           <img
-            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png
-"
+            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png"
             alt="House Photos"
             className="rounded-t-lg"
           />
@@ -36,7 +36,7 @@ function HouseCard() {
               <div className="">
                 <FontAwesomeIcon
                   icon={faCommentDots}
-                  className="text-[#94A3B8] "
+                  className="text-[#94A3B8]"
                 />
               </div>
             </div>
