@@ -86,7 +86,7 @@ function House() {
   )
 }
 
-// Extra Complements for Booking and Leave Review
+// Extra Component for Booking and Leave Review
 
 function BookingForm() {
   return (
