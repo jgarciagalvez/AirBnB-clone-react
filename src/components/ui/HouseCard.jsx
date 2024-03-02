@@ -3,7 +3,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 
-function HouseCard() {
+function HouseCard(props) {
+  const booking = props.booking
+  const isBooking = props.isBooking
+
+  const bookingPart = (
+    <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
+      <span className="text-xs mt-2 ">
+        {booking.arrival} - {booking.departure}
+      </span>
+      <div className="font-bold text-sm mb-2">3 nights = $350</div>
+    </div>
+  )
+
+  console.log({ isBooking })
+
   return (
     <Link to="/houses/1" className="">
       <div className="border border-solid border-stone-200 rounded-lg gap-3 hover:shadow-lg">
@@ -15,11 +29,11 @@ function HouseCard() {
           />
         </div>
         <div className="p-2">
-          <p className="font-bold text-l">Phuket, Thailand</p>
+          <p className="font-bold text-l">{booking.house.location}</p>
           <p className="font-thin text-sm text-[#64748B]">
             2 Rooms · 2 Bathrooms
           </p>
-          <p className="font-bold text-lg mt-2">$120</p>
+          <p className="font-bold text-lg mt-2">${booking.price}</p>
           <div className="flex justify-between">
             <div className="flex gap-2">
               <div className="">
@@ -41,6 +55,7 @@ function HouseCard() {
               </div>
             </div>
           </div>
+          {isBooking ? bookingPart : null}
         </div>
       </div>
     </Link>
