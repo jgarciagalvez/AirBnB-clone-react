@@ -3,6 +3,20 @@ import Reviews from '../ui/Reviews'
 import Nav from '../ui/Nav'
 
 function House() {
+  let house = {
+    location: 'Koh Phangan, Thailand',
+    rooms: 3,
+    bathrooms: 4,
+    description: 'This house.... is a very very very fine house!',
+    price: 700,
+    rating: 4.2,
+    host: {
+      firstname: 'Barbara',
+      lastname: 'Streisand',
+      picture: 'https://randomuser.me/api/portraits/women/51.jpg'
+    }
+  }
+
   return (
     <div className="container mx-auto">
       <Nav />
@@ -19,24 +33,31 @@ function House() {
       </div>
       <div className="grid grid-cols-3 gap-5  ">
         <div className=" col-span-2">
-          <Location />
+          {/* LOCATION */}
+          <div className="text-xl font-bold m-5">{house.location}</div>
+
           <div className="text-xs m-5">
-            <NumRooms /> Rooms - <NumBaths /> Bathrooms
+            {/* Number of rooms and bathrooms */}
+            <span>{house.rooms} </span> Rooms - <span>{house.bathrooms} </span>
+            Bathrooms
           </div>
+          {/* HOST */}
           <div className=" flex gap-2  m-5">
-            <div className="bg-sky-500">
-              <img
-                className="h-12 rounded-lg"
-                src="https://randomuser.me/api/portraits/women/85.jpg"
-                alt="user"
-              />
-            </div>
+            <img
+              className="h-12 rounded-full "
+              src={house.host.picture}
+              alt="user"
+            />
+
             <span>
               <div className="text-sm text-slate-400">Hosted By</div>
-              <Host />
+              <div>
+                {house.host.firstname} {house.host.lastname}
+              </div>
             </span>
           </div>
-          <Description />
+          {/* DESCRIPTION */}
+          <div className="m-5 ml-10 text-sm">{house.description}</div>
           <div className="m-5">
             <Reviews />
           </div>
@@ -44,7 +65,7 @@ function House() {
         <div className="col-span-1">
           <div className="grid gap-2 border rounded border-gray-400 p-3 mt-4 mb-4">
             <h6 className="font-bold">
-              $120
+              ${house.price}
               <span className="text-sm text-gray-400"> / night</span>
             </h6>
 
@@ -91,47 +112,6 @@ function House() {
           </div>
         </div>
       </div>
-    </div>
-  )
-}
-
-function Location() {
-  return <div className="text-xl font-bold m-5">Phuket, Thailand</div>
-}
-
-function NumRooms() {
-  return <span>2 </span>
-}
-
-function NumBaths() {
-  return <span>2 </span>
-}
-
-function Host() {
-  return <div>Linda Smith</div>
-}
-
-function Description() {
-  return (
-    <div className="m-5 ml-10 text-sm">
-      Welcome to "Cloud Haven," an ethereal retreat nestled in the heart of the
-      Floating Isles—an exclusive celestial escape that defies earthly
-      conventions. Immerse yourself in the awe-inspiring ambiance of our
-      levitating abodes, where gravity takes a vacation, and every moment feels
-      like a dream. Your sanctuary in the sky boasts panoramic views of the
-      ever-shifting cloudscapes, with beds that hover gently above the ground,
-      providing a restful slumber amidst the clouds. Our ethereal hosts,
-      luminescent beings known as Skykeepers, ensure your stay is both
-      enchanting and otherworldly. Enjoy the sensation of dining on our
-      cloud-borne terrace, where the menu is as diverse as the hues of the
-      sunset. Venture beyond your celestial haven to discover floating gardens,
-      where rare, otherworldly flora flourishes in the weightless atmosphere.
-      Engage in celestial activities such as starlight yoga and cloud painting,
-      or simply unwind in our spa, where treatments harness the rejuvenating
-      power of cosmic energies. "Cloud Haven" is not just a getaway; it's a
-      transcendental experience where the ordinary is left far below, and the
-      extraordinary awaits you in the skies. Book your stay now and elevate your
-      journey to new heights!
     </div>
   )
 }
