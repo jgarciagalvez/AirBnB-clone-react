@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
+import Stars from './stars'
 
 function HouseCard(props) {
   const booking = props.booking
   const isBooking = props.isBooking
   const house = props.house
-  const rating = Math.floor(house.rating)
   const bookingPart = (
     <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
       <span className="text-xs mt-2 ">
@@ -36,9 +35,7 @@ function HouseCard(props) {
           <div className="flex justify-between">
             <div className="flex gap-2">
               <div className="">
-                {[...new Array(rating)].map((i, index) => (
-                  <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-                ))}
+                <Stars rating={house.rating} />
               </div>
               <div className="">{house.rating}</div>
             </div>
