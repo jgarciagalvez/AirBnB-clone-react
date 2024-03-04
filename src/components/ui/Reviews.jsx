@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import React from 'react'
+import Stars from './stars'
 
 const reviews = [
   {
@@ -78,19 +79,4 @@ function Review({ review }) {
       </div>
     </div>
   )
-}
-
-function Stars({ rating }) {
-  const arr = [...Array(Math.floor(rating))]
-  return [
-    <div>
-      {arr.map((star, i) => {
-        return (
-          <span key={i}>
-            <FontAwesomeIcon icon={faStar} className="text-[#FBBF24]" />
-          </span>
-        )
-      })}
-    </div>
-  ]
 }
