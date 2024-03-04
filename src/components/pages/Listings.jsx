@@ -1,5 +1,5 @@
 import Nav from '../ui/Nav'
-import HouseCard from '../ui/HouseCard'
+//import HouseCard from '../ui/HouseCard'
 function listings() {
   return (
     <div className="container mx-auto">
@@ -40,13 +40,13 @@ function listings() {
         </div>
       </form>
       <div className="grid grid-cols-5 gap-3">
+        {/* <HouseCard />
         <HouseCard />
         <HouseCard />
         <HouseCard />
         <HouseCard />
         <HouseCard />
-        <HouseCard />
-        <HouseCard />
+        <HouseCard /> */}
       </div>
     </div>
   )
