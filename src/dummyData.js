@@ -169,7 +169,7 @@ export const reviews = [
   },
   {
     id: 8,
-    house_id: houses[6].id,
+    house_id: houses[4].id,
     author: users[1],
     date: '15 Aug 2024',
     rating: 4.6,
@@ -178,7 +178,7 @@ export const reviews = [
   },
   {
     id: 9,
-    house_id: houses[7].id,
+    house_id: houses[3].id,
     author: users[2],
     date: '5 Sep 2024',
     rating: 4.3,
@@ -187,7 +187,7 @@ export const reviews = [
   },
   {
     id: 10,
-    house_id: houses[8].id,
+    house_id: houses[3].id,
     author: users[3],
     date: '12 Oct 2024',
     rating: 5,
@@ -196,7 +196,7 @@ export const reviews = [
   },
   {
     id: 11,
-    house_id: houses[9].id,
+    house_id: houses[5].id,
     author: users[4],
     date: '30 Oct 2024',
     rating: 4.4,
@@ -268,8 +268,8 @@ export const bookings = [
     price: 900,
     arrival: '5 Jul 2024',
     departure: '12 Jul 2024',
-    house: houses[6],
-    host: users[6],
+    house: houses[4],
+    host: users[5],
     guest: users[1]
   },
   {
@@ -277,8 +277,8 @@ export const bookings = [
     price: 750,
     arrival: '15 Aug 2024',
     departure: '22 Aug 2024',
-    house: houses[7],
-    host: users[7],
+    house: houses[4],
+    host: users[5],
     guest: users[2]
   },
   {
@@ -286,8 +286,8 @@ export const bookings = [
     price: 1100,
     arrival: '1 Sep 2024',
     departure: '8 Sep 2024',
-    house: houses[8],
-    host: users[8],
+    house: houses[4],
+    host: users[4],
     guest: users[3]
   },
   {
@@ -295,8 +295,8 @@ export const bookings = [
     price: 850,
     arrival: '10 Oct 2024',
     departure: '17 Oct 2024',
-    house: houses[9],
-    host: users[9],
+    house: houses[3],
+    host: users[2],
     guest: users[4]
   }
 ];

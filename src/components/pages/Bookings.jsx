@@ -1,6 +1,6 @@
 import Nav from '../ui/Nav'
 import HouseCard from '../ui/HouseCard'
-import { bookings } from '../../dummyData'
+import { bookings } from '../../dummyData.js'
 
 function Bookings() {
   // Loop through the bookings array and render a HouseCard component for
@@ -10,8 +10,12 @@ function Bookings() {
     <div className="container mx-auto">
       <Nav />
       <div className="grid md:grid-cols-5 gap-3 sm:grid-cols-2">
-        {bookings.map((booking, index) => (
-          <HouseCard key={index} booking={booking} isBooking={true} />
+        {bookings.map((booking) => (
+          <HouseCard
+            key={booking.booking_id}
+            booking={booking}
+            isBooking={true}
+          />
         ))}
       </div>
     </div>
