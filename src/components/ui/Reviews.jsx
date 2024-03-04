@@ -2,31 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import React from 'react'
-
-const reviews = [
-  {
-    author: {
-      firstName: 'Ray',
-      lastName: 'Garreth',
-      picture: 'https://randomuser.me/api/portraits/men/47.jpg'
-    },
-    date: '2 Feb 2024',
-    rating: 5,
-    content:
-      'Loved this charming Airbnb in Koh Phangan. Beautifully nestled in nature, it offers peace and stunning views. Comfortable, well-equipped, and close to local attractions. Host was welcoming and helpful. A tranquil retreat with a lovely pool and deck. Note: limited Wi-Fi and steep access. Highly recommend!'
-  },
-  {
-    author: {
-      firstName: 'Sandro',
-      lastName: 'Berger',
-      picture: 'https://randomuser.me/api/portraits/men/84.jpg'
-    },
-    date: '5 Jan 2024',
-    rating: 4,
-    content:
-      "On the positive side, the location was fantastic – just a short walk to the beach and local eateries. The view from the balcony was breathtaking, especially during sunsets. However, the house itself left a bit to be desired. The decor was charming with a beach theme, but the cleanliness wasn't up to par; we found dust in several corners, and the bathroom fixtures were somewhat dated. The amenities listed were all present, but the Wi-Fi was frustratingly slow and unreliable. Additionally, while the host was polite, their response time was slower than expected, complicating the check-in process more than necessary. It's a decent place if you're not overly concerned about the finer details and are more focused on the location."
-  }
-]
+import { reviews } from '../../dummyData.js'
+import Stars from './stars'
 
 export default function Reviews() {
   return (
@@ -78,19 +55,4 @@ function Review({ review }) {
       </div>
     </div>
   )
-}
-
-function Stars({ rating }) {
-  const arr = [...Array(Math.floor(rating))]
-  return [
-    <div>
-      {arr.map((star, i) => {
-        return (
-          <span key={i}>
-            <FontAwesomeIcon icon={faStar} className="text-[#FBBF24]" />
-          </span>
-        )
-      })}
-    </div>
-  ]
 }

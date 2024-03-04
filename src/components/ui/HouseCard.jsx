@@ -1,22 +1,20 @@
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
+import Stars from './stars'
 
 function HouseCard(props) {
   const booking = props.booking
   const isBooking = props.isBooking
-
+  const house = props.house
   const bookingPart = (
     <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
       <span className="text-xs mt-2 ">
-        {booking.arrival} - {booking.departure}
+        {booking ? booking.arrival + ' - ' + booking.departure : null}
       </span>
       <div className="font-bold text-sm mb-2">3 nights = $350</div>
     </div>
   )
-
-  console.log({ isBooking })
 
   return (
     <Link to="/houses/1" className="">
@@ -29,21 +27,17 @@ function HouseCard(props) {
           />
         </div>
         <div className="p-2">
-          <p className="font-bold text-l">{booking.house.location}</p>
+          <p className="font-bold text-l">{house.location}</p>
           <p className="font-thin text-sm text-[#64748B]">
-            2 Rooms · 2 Bathrooms
+            {house.rooms} Rooms · {house.bathrooms} Bathrooms
           </p>
-          <p className="font-bold text-lg mt-2">${booking.price}</p>
+          <p className="font-bold text-lg mt-2">${house.price}</p>
           <div className="flex justify-between">
             <div className="flex gap-2">
               <div className="">
-                <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-                <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-                <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-                <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-                <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
+                <Stars rating={house.rating} />
               </div>
-              <div className="">5</div>
+              <div className="">{house.rating}</div>
             </div>
             <div className="flex gap-2 items-center">
               <div className="">34</div>
