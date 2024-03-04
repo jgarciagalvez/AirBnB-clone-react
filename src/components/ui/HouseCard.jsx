@@ -7,7 +7,7 @@ function HouseCard(props) {
   const booking = props.booking
   const isBooking = props.isBooking
   const house = props.house
-  const rating = props.rating
+  const rating = Math.floor(house.rating)
   const bookingPart = (
     <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
       <span className="text-xs mt-2 ">
