@@ -6,6 +6,7 @@ import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 function HouseCard(props) {
   const booking = props.booking
   const isBooking = props.isBooking
+  const rating = 5
 
   const bookingPart = (
     <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
@@ -37,11 +38,9 @@ function HouseCard(props) {
           <div className="flex justify-between">
             <div className="flex gap-2">
               <div className="">
-                <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-                <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-                <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-                <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
-                <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
+                {[...new Array(rating)].map((i, index) => (
+                  <FontAwesomeIcon icon={faStar} className="text-yellow-400" />
+                ))}
               </div>
               <div className="">5</div>
             </div>
