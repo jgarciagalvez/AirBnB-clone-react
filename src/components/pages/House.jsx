@@ -1,6 +1,8 @@
 import Gallery from '../ui/Gallery'
 import Reviews from '../ui/Reviews'
 import Nav from '../ui/Nav'
+import { useEffect, useState } from 'react'
+import { differenceInCalendarDays } from 'date-fns'
 
 function House() {
   let house = {
@@ -83,7 +85,28 @@ function House() {
   )
 }
 
+// COMPONENT: Booking Form
+
 function BookingForm({ house }) {
+  // Create useState variables for form
+
+  const [startDate, setStartDate] = useState(null)
+  const [endDate, setEndDate] = useState(null)
+  const [nights, setNights] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
+
+  // Calculate nights and update variable when either startDate or endDate are changed
+  useEffect(() => {
+    startDate && endDate
+      ? setNights(differenceInCalendarDays(endDate, startDate))
+      : setNights(0)
+  }, [startDate, endDate])
+
+  // Calculate totalPrice when nights is higher than 0
+  useEffect(() => {
+    setTotalPrice(nights * house.price)
+  }, [nights, house.price])
+
   return (
     <div className="col-span-1">
       <div className="grid gap-2 border rounded border-[#E5E7EB] p-3 mb-4">
@@ -97,13 +120,21 @@ function BookingForm({ house }) {
               <label className="text-sm font-thin text-gray-400">
                 Check-in
               </label>
-              <input className="border gap-2 pl-1" type="date" />
+              <input
+                onChange={(e) => setStartDate(e.target.value)}
+                className="border gap-2 pl-1"
+                type="date"
+              />
             </div>
             <div className="flex flex-col">
               <label className="text-sm font-thin text-gray-400">
                 Check-out
               </label>
-              <input className="border pl-1" type="date" />
+              <input
+                onChange={(e) => setEndDate(e.target.value)}
+                className="border pl-1"
+                type="date"
+              />
             </div>
           </div>
           <textarea
@@ -113,7 +144,8 @@ function BookingForm({ house }) {
           ></textarea>
           <div className="flex justify-between items-center">
             <span>
-              3 nights = <span className="font-bold">360</span>
+              {nights} nights =
+              <span className="font-bold"> $ {totalPrice}</span>
             </span>
             <button className="rounded bg-[#FB7185] text-white p-1 px-2">
               Reserve
