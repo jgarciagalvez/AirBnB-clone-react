@@ -107,6 +107,26 @@ function BookingForm({ house }) {
     setTotalPrice(nights * house.price)
   }, [nights, house.price])
 
+  // Component for the Total Booking Span
+  function TotalBookingSpan() {
+    // Throws error if nights is negative
+
+    if (nights < 0) {
+      return (
+        <span className="font-bold text-red-700">
+          Check-out date must be <br />
+          after the check-in date
+        </span>
+      )
+    }
+    // If nights >= 0, we render the span with the number of nights and total price
+    return (
+      <span>
+        {nights} nights =<span className="font-bold"> $ {totalPrice}</span>
+      </span>
+    )
+  }
+
   return (
     <div className="col-span-1">
       <div className="grid gap-2 border rounded border-[#E5E7EB] p-3 mb-4">
@@ -143,10 +163,7 @@ function BookingForm({ house }) {
             placeholder="Please send a message to the host..."
           ></textarea>
           <div className="flex justify-between items-center">
-            <span>
-              {nights} nights =
-              <span className="font-bold"> $ {totalPrice}</span>
-            </span>
+            <TotalBookingSpan />
             <button className="rounded bg-[#FB7185] text-white p-1 px-2">
               Reserve
             </button>
