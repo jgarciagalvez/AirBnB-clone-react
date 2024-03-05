@@ -97,35 +97,14 @@ function BookingForm({ house }) {
 
   // Calculate nights and update variable when either startDate or endDate are changed
   useEffect(() => {
-    startDate && endDate
-      ? setNights(differenceInCalendarDays(endDate, startDate))
-      : setNights(0)
+    if (startDate && endDate)
+      setNights(differenceInCalendarDays(endDate, startDate))
   }, [startDate, endDate])
 
   // Calculate totalPrice when nights is higher than 0
   useEffect(() => {
     setTotalPrice(nights * house.price)
   }, [nights, house.price])
-
-  // Component for the Total Booking Span
-  function TotalBookingSpan() {
-    // Throws error if nights is negative
-
-    if (nights < 0) {
-      return (
-        <span className="font-bold text-red-700">
-          Check-out date must be <br />
-          after the check-in date
-        </span>
-      )
-    }
-    // If nights >= 0, we render the span with the number of nights and total price
-    return (
-      <span>
-        {nights} nights =<span className="font-bold"> $ {totalPrice}</span>
-      </span>
-    )
-  }
 
   return (
     <div className="col-span-1">
@@ -163,8 +142,11 @@ function BookingForm({ house }) {
             placeholder="Please send a message to the host..."
           ></textarea>
           <div className="flex justify-between items-center">
-            <TotalBookingSpan />
-            <button className="rounded bg-[#FB7185] text-white p-1 px-2">
+            <TotalBookingSpan nights={nights} totalPrice={totalPrice} />
+            <button
+              className="rounded bg-[#FB7185] text-white p-1 px-2 disabled:bg-gray-300"
+              disabled={nights <= 0}
+            >
               Reserve
             </button>
           </div>
@@ -190,3 +172,30 @@ function LeaveReviewForm() {
 }
 
 export default House
+
+// Component for the Total Booking Span
+
+function TotalBookingSpan({ nights, totalPrice }) {
+  // Don't display anything if nights = 0
+
+  if (nights === 0) {
+    return <div></div>
+  }
+  // Throws error if nights is negative
+
+  if (nights < 0) {
+    return (
+      <span className="font-bold text-red-700">
+        Check-out date must be <br />
+        after the check-in date
+      </span>
+    )
+  }
+  // If nights >= 0, we render the span with the number of nights and total price
+
+  return (
+    <span>
+      {nights} nights =<span className="font-bold"> $ {totalPrice}</span>
+    </span>
+  )
+}
