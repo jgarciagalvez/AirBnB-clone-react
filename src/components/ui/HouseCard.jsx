@@ -18,11 +18,8 @@ function HouseCard(props) {
     </div>
   )
 
-  const listingView = <button>View</button>
-  const listingEdit = <button>Edit</button>
-
   return (
-    <Link to="/houses/1" className="">
+    <Link to="/houses/:house_id" className="">
       <div className="border border-solid border-stone-200 rounded-lg gap-3 hover:shadow-lg">
         <div className="rounded-t-lg justify-center">
           <img
@@ -54,17 +51,20 @@ function HouseCard(props) {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-4 gap-2">
-            <span className="border p-2 rounded-md">
-              {isListing ? listingView : null}
-            </span>
-            <Link
-              to="/houses/1/edit"
-              className="border p-2 col-span-1 rounded-md"
-            >
-              {isListing ? listingEdit : null}
-            </Link>
-          </div>
+          {isListing && (
+            <div className="grid grid-cols-4 gap-2 mt-2">
+              <Link to="/houses/1" className="">
+                <button className="bg-[#FF5A5F] text-white border p-2 col-span-1 rounded-md">
+                  View
+                </button>
+              </Link>
+              <Link to="/houses/1/edit">
+                <button className="bg-[#FF5A5F] text-white border p-2 col-span-1 rounded-md">
+                  Edit
+                </button>
+              </Link>
+            </div>
+          )}
           {isBooking ? bookingPart : null}
         </div>
       </div>
