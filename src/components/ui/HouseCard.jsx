@@ -7,6 +7,8 @@ function HouseCard(props) {
   const booking = props.booking
   const isBooking = props.isBooking
   const house = props.house
+  const isListing = props.isListing
+
   const bookingPart = (
     <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
       <span className="text-xs mt-2 ">
@@ -15,6 +17,9 @@ function HouseCard(props) {
       <div className="font-bold text-sm mb-2">3 nights = $350</div>
     </div>
   )
+
+  const listingView = <button>View</button>
+  const listingEdit = <button>Edit</button>
 
   return (
     <Link to="/houses/1" className="">
@@ -48,6 +53,17 @@ function HouseCard(props) {
                 />
               </div>
             </div>
+          </div>
+          <div className="grid grid-cols-4 gap-2">
+            <span className="border p-2 rounded-md">
+              {isListing ? listingView : null}
+            </span>
+            <Link
+              to="/houses/1/edit"
+              className="border p-2 col-span-1 rounded-md"
+            >
+              {isListing ? listingEdit : null}
+            </Link>
           </div>
           {isBooking ? bookingPart : null}
         </div>
