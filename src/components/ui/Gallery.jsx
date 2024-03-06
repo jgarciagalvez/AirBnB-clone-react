@@ -1,8 +1,6 @@
 import { useState } from 'react'
 function Gallery({ images }) {
   const [mainImage, setMainImage] = useState(images[0])
-
-  console.log(images)
   return (
     <div className="grid sm:grid-cols-2 gap-2">
       {/* Featured Picture */}
