@@ -1,17 +1,29 @@
-export default function Gallery({ images }) {
-  const imgStyle = 'hover:shadow-md rounded-md h-auto'
+import { useState } from 'react'
+function Gallery({ images }) {
+  const [mainImage, setMainImage] = useState(images[0])
+
+  console.log(images)
   return (
     <div className="grid sm:grid-cols-2 gap-2">
       {/* Featured Picture */}
-      <div className="rounded-md md:min-h-[200px] sm:min-h-[100px] bg-cover bg-center bg-[url('https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png')]">
-        <img scr={[0]} alt="" />
+      <div className="rounded-md md:min-h-[200px] sm:min-h-[100px]">
+        <img scr={mainImage} alt="" />
       </div>
       {/* Gallery Pictures*/}
-      <div className="grid gap-1.5 md:grid-cols-3 sm:grid-cols-2">
+      <div className="grid gap-1.5 md:grid-cols-3 sm:grid-cols-2hover:shadow-md rounded-md h-auto">
         {images.map((image, i) => (
-          <img scr={image} key={i} alt="" />
+          <img
+            scr={image}
+            key={i}
+            alt=""
+            onClick={(event) => {
+              console.log(image)
+              setMainImage(image)
+            }}
+          />
         ))}
       </div>
     </div>
   )
 }
+export default Gallery
