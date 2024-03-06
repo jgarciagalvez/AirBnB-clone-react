@@ -16,7 +16,18 @@ function House() {
       firstname: 'Barbara',
       lastname: 'Streisand',
       picture: 'https://randomuser.me/api/portraits/women/51.jpg'
-    }
+    },
+    images: [
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_02.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_03.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_04.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_07.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_08.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_09.png'
+    ]
   }
   return (
     <div className="container mx-auto">
@@ -28,13 +39,8 @@ function House() {
       <div className="flex flex-col p-4 gap-5">
         {/* Images on page */}
 
-        <div className="grid sm:grid-cols-2 gap-2">
-          {/* Highlight Image */}
-          <div className="rounded-md md:min-h-[200px] sm:min-h-[100px] bg-cover bg-center bg-[url('https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png')]"></div>
-
-          {/* Gallery */}
-          <Gallery />
-        </div>
+        {/* Gallery */}
+        <Gallery images={house.images} />
 
         {/* House Info & Booking */}
 
