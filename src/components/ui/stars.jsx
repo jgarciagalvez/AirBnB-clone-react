@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 function Stars({ rating }) {
-  const arr = [...Array(Math.floor(rating))]
+  const arr = [...Array(Math.floor(rating ?? 0))]
   return [
     <div>
       {arr.map((star, i) => {
