@@ -5,19 +5,22 @@ function Gallery({ images }) {
     <div className="grid sm:grid-cols-2 gap-2">
       {/* Featured Picture */}
       <div className="rounded-md md:min-h-[200px] sm:min-h-[100px]">
-        <img scr={mainImage} alt="" />
+        <div
+          className="bg-cover rounded bg-center"
+          style={{ height: '100%', backgroundImage: 'url(' + mainImage + ')' }}
+        ></div>
       </div>
+      {console.log(mainImage)}
       {/* Gallery Pictures*/}
       <div className="grid gap-1.5 md:grid-cols-3 sm:grid-cols-2hover:shadow-md rounded-md h-auto">
         {images.map((image, i) => (
-          <img
-            scr={image}
-            key={i}
-            alt=""
+          <div
+            className="bg-cover bg-center rounded cursor-pointer"
             onClick={(event) => {
               console.log(image)
               setMainImage(image)
             }}
+            style={{ height: '8rem', backgroundImage: 'url(' + image + ')' }}
           />
         ))}
       </div>
