@@ -7,6 +7,8 @@ function HouseCard(props) {
   const booking = props.booking
   const isBooking = props.isBooking
   const house = props.house
+  const isListing = props.isListing
+
   const bookingPart = (
     <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
       <span className="text-xs mt-2 ">
@@ -17,7 +19,7 @@ function HouseCard(props) {
   )
 
   return (
-    <Link to="/houses/1" className="">
+    <Link to="/houses/:house_id" className="">
       <div className="border border-solid border-stone-200 rounded-lg gap-3 hover:shadow-lg">
         <div className="rounded-t-lg justify-center">
           <img
@@ -49,6 +51,20 @@ function HouseCard(props) {
               </div>
             </div>
           </div>
+          {isListing && (
+            <div className="grid grid-cols-4 gap-2 mt-2">
+              <Link to="/houses/1" className="">
+                <button className="bg-[#FF5A5F] text-white border p-2 col-span-1 rounded-md">
+                  View
+                </button>
+              </Link>
+              <Link to="/houses/1/edit">
+                <button className="bg-[#FF5A5F] text-white border p-2 col-span-1 rounded-md">
+                  Edit
+                </button>
+              </Link>
+            </div>
+          )}
           {isBooking ? bookingPart : null}
         </div>
       </div>

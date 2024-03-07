@@ -1,7 +1,13 @@
 import Nav from '../ui/Nav'
-function profile() {
+import { useState } from 'react'
+
+function Profile() {
   const classNameInput = 'border border-[#E5E7EB] rounded-sm h-10 w-full pl-4'
   const classNameLabel = 'text-[#64748B] pb-1 mt-4 block'
+  const [picture, setPicture] = useState(
+    'https://randomuser.me/api/portraits/men/81.jpg'
+  )
+
   return (
     <div className="container mx-auto">
       <Nav />
@@ -11,27 +17,32 @@ function profile() {
           <form className="gap-5">
             <div className="flex items-center	gap-3">
               <img
-                src="https://randomuser.me/api/portraits/men/81.jpg"
+                src={picture}
                 alt="ProfilePic"
                 class="rounded-full bg-center w-20"
               />
               <input
                 type="text"
                 className={classNameInput}
-                value="https://randomuser.me/api/portraits/men/81.jpg"
+                defaultValue="https://randomuser.me/api/portraits/men/73.jpg"
+                onChange={(e) => setPicture(e.target.value)}
               />
             </div>
             <label className={classNameLabel}>First Name</label>
-            <input type="text" className={classNameInput} value="John" />
+            <input type="text" className={classNameInput} defaultValue="John" />
 
             <label className={classNameLabel}>Last Name</label>
-            <input type="text" className={classNameInput} value="Lopez" />
+            <input
+              type="text"
+              className={classNameInput}
+              defaultValue="Lopez"
+            />
 
             <label className={classNameLabel}>Email</label>
             <input
               type="email"
               className={classNameInput}
-              value="John.Lopez@gmail.com"
+              defaultValue="John.Lopez@gmail.com"
             />
             <div className="flex justify-between mt-4">
               <button className="bg-[#FB7185] text-white text-md py-2 px-5 rounded-md">
@@ -48,4 +59,4 @@ function profile() {
   )
 }
 
-export default profile
+export default Profile

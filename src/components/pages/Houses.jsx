@@ -1,9 +1,22 @@
 import HouseCard from '../ui/HouseCard'
 import Filters from '../ui/Filters'
 import Nav from '../ui/Nav'
-import { houses } from '../../dummyData.js'
+import { useState, useEffect } from 'react'
+
+import axios from 'axios'
 
 function Houses() {
+  const [houses, setHouses] = useState([])
+
+  const getHouses = async () => {
+    let { data } = await axios.get('https://haiku-bnb.onrender.com/houses')
+    setHouses(data)
+  }
+
+  useEffect(() => {
+    getHouses()
+  }, [])
+
   return (
     <div className="container mx-auto">
       <Nav />
