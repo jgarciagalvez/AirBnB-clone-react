@@ -1,34 +1,35 @@
 import Gallery from '../ui/Gallery'
 import Reviews from '../ui/Reviews'
 import Nav from '../ui/Nav'
+import axios from 'axios'
+import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { differenceInCalendarDays } from 'date-fns'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner, faUser } from '@fortawesome/free-solid-svg-icons'
 
 function House() {
-  let house = {
-    location: 'Koh Phangan, Thailand',
-    rooms: 3,
-    bathrooms: 4,
-    description: 'This house.... is a very very very fine house!',
-    price: 700,
-    rating: 4.2,
-    host: {
-      firstname: 'Barbara',
-      lastname: 'Streisand',
-      picture: 'https://randomuser.me/api/portraits/women/51.jpg'
-    },
-    images: [
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png',
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_02.png',
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_03.png',
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_04.png',
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png',
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_07.png',
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_08.png',
-      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_09.png'
-    ]
-  }
+  // Declare house useState variable
+  const [house, setHouse] = useState(undefined)
+  const { id } = useParams()
+
+  // Fetch data from API when component loads
+  useEffect(() => {
+    // Define function to Fetch data from the API
+    const getHouse = async () => {
+      try {
+        const { data } = await axios.get(
+          'https://haiku-bnb.onrender.com/houses/' + id
+        )
+        setHouse(data)
+      } catch (error) {
+        alert(error.message)
+      }
+    }
+
+    getHouse()
+  }, [id])
+
   return (
     <div className="container mx-auto">
       {/* Navigation Menu */}
@@ -40,7 +41,16 @@ function House() {
         {/* Images on page */}
 
         {/* Gallery */}
-        <Gallery images={house.images} />
+        {house ? (
+          <Gallery images={house.images} />
+        ) : (
+          <div className="flex h-[396px] items-center justify-center border">
+            <FontAwesomeIcon
+              icon={faSpinner}
+              className="text-lg animate-spin"
+            />
+          </div>
+        )}
 
         {/* House Info & Booking */}
 
@@ -49,28 +59,36 @@ function House() {
 
           <div className="w-2/3 flex flex-col gap-5">
             <div>
-              <p className="text-xl font-bold">{house.location}</p>
+              <p className="text-xl font-bold">
+                {house ? house.location : <span>Location</span>}
+              </p>
               <p className="text-xs text-[#64748B]">
-                {house.rooms} Rooms · {house.bathrooms} Bathrooms
+                {house?.rooms} Rooms · {house?.bathrooms} Bathrooms
               </p>
             </div>
             <div className=" flex gap-3">
-              <img
-                className="h-12 rounded-full"
-                src={house.host.picture}
-                alt="user"
-              />
+              {house ? (
+                <img
+                  className="h-12 rounded-full"
+                  src={house.host.picture}
+                  alt="user"
+                />
+              ) : (
+                <div className="flex h-12 w-12 justify-center items-center ">
+                  <FontAwesomeIcon icon={faUser} className="text-xl" />
+                </div>
+              )}
               <div>
                 <p className="text-sm text-[#64748B]">Hosted By</p>
                 <p>
-                  {house.host.firstname} {house.host.lastname}
+                  {house?.host.firstName} {house?.host.lastName}
                 </p>
               </div>
             </div>
-            <div className="text-sm">{house.description}</div>
+            <div className="text-sm">{house?.description}</div>
           </div>
           <div className="align-top">
-            <BookingForm house={house} />
+            <BookingForm house={house ?? {}} />
           </div>
         </div>
 

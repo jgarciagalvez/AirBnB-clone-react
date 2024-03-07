@@ -10,7 +10,7 @@ function Gallery({ images }) {
           style={{ height: '100%', backgroundImage: 'url(' + mainImage + ')' }}
         ></div>
       </div>
-      {console.log(mainImage)}
+
       {/* Gallery Pictures*/}
       <div className="grid gap-1.5 md:grid-cols-3 sm:grid-cols-2hover:shadow-md rounded-md h-auto">
         {images.map((image, i) => (
