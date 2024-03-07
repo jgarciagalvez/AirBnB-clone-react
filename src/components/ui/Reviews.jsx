@@ -1,11 +1,25 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
-import React from 'react'
-import { reviews } from '../../dummyData.js'
+import React, { useState, useEffect } from 'react'
+// import { reviews } from '../../dummyData.js'
 import Stars from './stars'
+import axios from 'axios'
 
-export default function Reviews() {
+export default function Reviews(props) {
+  const [reviews, setReviews] = useState([])
+  const house_id = props?.house_id ?? 1
+
+  const getReviews = async () => {
+    const url = 'https://haiku-bnb.onrender.com/reviews?house_id=' + house_id
+    const response = await axios.get(url)
+    console.log(response.data)
+    setReviews(response.data)
+  }
+  useEffect(() => {
+    getReviews()
+  }, [])
+
   return (
     <div className="container mx-auto gap-2">
       <div className="flex gap-2 items-center">
