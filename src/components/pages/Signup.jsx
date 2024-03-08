@@ -13,8 +13,11 @@ function signup() {
     console.log(e.target.password.value)
 
     const response = await axios.post('https://haiku-bnb.onrender.com/signup', {
+      firstName: e.target.firstName.value,
+      lastName: e.target.lastName.value,
       email: e.target.email.value,
-      password: e.target.password.value
+      password: e.target.password.value,
+      profile: e.target.profile.value
     })
     if (response.data.error) {
       setError(response.data.error)
