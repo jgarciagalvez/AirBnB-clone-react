@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faHouse,
@@ -16,18 +16,19 @@ function Filters(props) {
   // FUNCTIONS
 
   // Get list of locations for location filter
-  const getLocations = async () => {
-    try {
-      const response = await axios.get(
-        'https://haiku-bnb.onrender.com/locations'
-      )
-      setLocations(response.data)
-    } catch (error) {
-      alert(error.message)
+  useEffect(() => {
+    const getLocations = async () => {
+      try {
+        const response = await axios.get(
+          'https://haiku-bnb.onrender.com/locations'
+        )
+        setLocations(response.data)
+      } catch (error) {
+        alert(error.message)
+      }
     }
-  }
-
-  getLocations()
+    getLocations()
+  }, [])
 
   // API call to get list of houses (filtered with form query)
   const getHouses = async (query) => {
