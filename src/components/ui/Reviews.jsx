@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import React, { useState, useEffect } from 'react'
-// import { reviews } from '../../dummyData.js'
+import { useParams } from 'react-router-dom'
 import Stars from './stars'
 import axios from 'axios'
 
@@ -45,7 +45,8 @@ export default function Reviews(props) {
 }
 
 function Review({ review }) {
-  const { author, content, rating, date } = review
+  const { id } = useParams()
+  const { author, comment, rating, date } = review
   return (
     <div className="border border-solid border-[#E5E7EB] rounded-lg p-3 m-2 text-sm">
       {/* Author Box */}
@@ -65,7 +66,7 @@ function Review({ review }) {
         <span>{rating}</span>
       </div>
       <div className="flex">
-        <p>{content}</p>
+        <p>{comment}</p>
       </div>
     </div>
   )
