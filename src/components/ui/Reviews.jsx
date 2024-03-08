@@ -10,15 +10,14 @@ export default function Reviews(props) {
   const [reviews, setReviews] = useState([])
   const house_id = props?.house_id ?? 1
 
-  const getReviews = async () => {
-    const url = 'https://haiku-bnb.onrender.com/reviews?house_id=' + house_id
-    const response = await axios.get(url)
-    console.log(response.data)
-    setReviews(response.data)
-  }
   useEffect(() => {
+    const getReviews = async () => {
+      const url = 'https://haiku-bnb.onrender.com/reviews?house_id=' + house_id
+      const response = await axios.get(url)
+      setReviews(response.data)
+    }
     getReviews()
-  }, [])
+  }, [house_id])
 
   return (
     <div className="container mx-auto gap-2">
