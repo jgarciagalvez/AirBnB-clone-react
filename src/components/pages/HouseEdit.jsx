@@ -9,14 +9,14 @@ function HouseEdit() {
   const classNameInput = 'border border-[#E5E7EB] rounded-sm'
   const classNameLabel = 'text-[#64748B]'
 
-  const getData = async () => {
-    const response = await axios.get(
-      'https://haiku-bnb.onrender.com/houses/' + id
-    )
-    setHouse(response.data)
-  }
-
   useEffect(() => {
+    const getData = async () => {
+      const response = await axios.get(
+        'https://haiku-bnb.onrender.com/houses/' + id
+      )
+      setHouse(response.data)
+    }
+
     getData()
   }, [id])
 
