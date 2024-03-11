@@ -42,15 +42,15 @@ function Signup() {
 
 
     return (
-      <div className="container mx-auto flex justify-center">
-        <div className="border border-[#E5E7EB] shadow-md rounded-lg p-4 mt-4 w-[320px]">
-          <div className="flex justify-center">
-            <img
-              src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
-              alt="AirBnB Logo"
-              class="h-[24px]"
-            />
-          </div>
+    <div className="container mx-auto flex justify-center">
+      <div className="border border-[#E5E7EB] shadow-md rounded-lg p-4 mt-4 w-[320px]">
+        <div className="flex justify-center">
+          <img
+            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
+            alt="AirBnB Logo"
+            className="h-[24px]"
+          />
+        </div>
           <div className="p-1">
             <form onSubmit={submitForm} className="flex flex-col">
               <label className={classNameLabel}>First Name</label>
