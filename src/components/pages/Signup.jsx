@@ -21,29 +21,22 @@ function Signup() {
       setValidPassword(false)
     }
   }
-    const classNameInput = 'border border-[#E5E7EB] rounded-md h-10 pl-4'
-    const classNameLabel = 'text-[#64748B] pb-1 mt-2 font-extralight'
     const submitForm = async (e) => {
-      e.preventDefault()
-      console.log(e.target.email.value)
-      console.log(e.target.password.value)
+    e.preventDefault()
+    const response = await axios.post('https://haiku-bnb.onrender.com/signup', {
+      firstName: e.target.firstName.value,
+      lastName: e.target.lastName.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+      profile: e.target.profile.value,
+    })
 
-      const response = await axios.post(
-        'https://haiku-bnb.onrender.com/signup',
-        {
-          firstName: e.target.firstName.value,
-          lastName: e.target.lastName.value,
-          email: e.target.email.value,
-          password: e.target.password.value,
-          profile: e.target.profile.value
-        }
-      )
-      if (response.data.error) {
-        setError(response.data.error)
-      } else {
-        navigate('/')
-      }
+    if (response.data.error) {
+      setError(response.data.error)
+    } else {
+      navigate('/')
     }
+  }
 
     return (
       <div className="container mx-auto flex justify-center">
