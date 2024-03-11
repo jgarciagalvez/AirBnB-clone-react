@@ -1,6 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
+axios.defaults.withCredentials = true
+
 function Signup() {
   const [validEmail, setValidEmail] = useState('true')
   const [validPassword, setValidPassword] = useState('true')
@@ -93,6 +95,7 @@ function Signup() {
               <button className="bg-[#FB7185] text-white text-lg p-2 my-5 rounded-md">
                 Register
               </button>
+              <div className="text-red-500">{error}</div>
             </form>
           </div>
           <div className="ml-1 text-sm">
