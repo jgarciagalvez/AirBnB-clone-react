@@ -2,10 +2,9 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 axios.defaults.withCredentials = true
-
 function Signup() {
-  const [validEmail, setValidEmail] = useState('true')
-  const [validPassword, setValidPassword] = useState('true')
+  const [validEmail, setValidEmail] = useState(true)
+  const [validPassword, setValidPassword] = useState(true)
   const [error, setError] = useState('')
   const navigate = useNavigate()
   const validateEmail = (email) => {
