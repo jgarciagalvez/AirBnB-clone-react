@@ -8,22 +8,19 @@ function Signup() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
   const validateEmail = (email) => {
-    if ((email.includes('@') && email.includes('.')) || !email) {
-      console.log(email)
+    if (email.includes('@') && email.includes('.')) {
       setValidEmail(true)
     } else {
-      console.log('not valid')
       setValidEmail(false)
     }
-    const validatePassword = (password) => {
-      if (password.length >= 6 || !password) {
-        console.log(password)
-        setValidPassword(true)
-      } else {
-        console.log('not valid')
-        setValidPassword(false)
-      }
+  }
+  const validatePassword = (password) => {
+    if (password.length >= 6) {
+      setValidPassword(true)
+    } else {
+      setValidPassword(false)
     }
+  }
     const classNameInput = 'border border-[#E5E7EB] rounded-md h-10 pl-4'
     const classNameLabel = 'text-[#64748B] pb-1 mt-2 font-extralight'
     const submitForm = async (e) => {
