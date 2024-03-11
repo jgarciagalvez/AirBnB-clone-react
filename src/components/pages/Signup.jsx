@@ -1,4 +1,3 @@
-
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
@@ -10,7 +9,7 @@ function Signup() {
   const [validPassword, setValidPassword] = useState(true)
   const [error, setError] = useState('')
   const navigate = useNavigate()
-  
+
   const validateEmail = (email) => {
     if (email.includes('@') && email.includes('.')) {
       setValidEmail(true)
@@ -18,7 +17,7 @@ function Signup() {
       setValidEmail(false)
     }
   }
-  
+
   const validatePassword = (password) => {
     if (password.length >= 6) {
       setValidPassword(true)
@@ -26,15 +25,15 @@ function Signup() {
       setValidPassword(false)
     }
   }
-  
+
   const submitForm = async (e) => {
     e.preventDefault()
     const response = await axios.post('https://haiku-bnb.onrender.com/signup', {
-      firstName: e.target.firstName.value,
-      lastName: e.target.lastName.value,
+      first_name: e.target.firstName.value,
+      last_name: e.target.lastName.value,
       email: e.target.email.value,
       password: e.target.password.value,
-      profile: e.target.profile.value
+      picture: e.target.profile.value
     })
 
     if (response.data.error) {
@@ -43,7 +42,7 @@ function Signup() {
       navigate('/')
     }
   }
-  
+
   const classNameInput = 'border border-[#E5E7EB] rounded-md h-10 pl-4'
   const classNameLabel = 'text-[#64748B] pb-1 mt-2 font-extralight'
 
