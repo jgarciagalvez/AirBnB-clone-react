@@ -1,12 +1,21 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
-function signup() {
-  const classNameInput = 'border border-[#E5E7EB] rounded-md h-10 pl-4'
-  const classNameLabel = 'text-[#64748B] pb-1 mt-2 font-extralight'
+function Signup() {
+  const [validEmail, setValidEmail] = useState('true')
   const [error, setError] = useState('')
   const navigate = useNavigate()
-
+  const validateEmail = (email) => {
+    if ((email.includes('@') && email.includes('.')) || !email) {
+      console.log(email)
+      setValidEmail(true)
+    } else {
+      console.log('not valid')
+      setValidEmail(false)
+    }
+  }
+  const classNameInput = 'border border-[#E5E7EB] rounded-md h-10 pl-4'
+  const classNameLabel = 'text-[#64748B] pb-1 mt-2 font-extralight'
   const submitForm = async (e) => {
     e.preventDefault()
     console.log(e.target.email.value)
@@ -42,8 +51,15 @@ function signup() {
             <label className={classNameLabel}>Last Name</label>
             <input type="text" name="lastName" className={classNameInput} />
             <label className={classNameLabel}>Email</label>
-            <div className="text-red-500">{error}</div>
-            <input type="email" name="email" className={classNameInput} />
+            <input
+              type="email"
+              name="email"
+              onChange={(e) => validateEmail(e.target.value)}
+              className={classNameInput}
+            />
+            {!validEmail && (
+              <span className="text-[#FB7185]">Invalid Email</span>
+            )}
             <label className={classNameLabel}>Password</label>
             <input type="password" name="password" className={classNameInput} />
             <label className={classNameLabel}>Profile Picture</label>
@@ -63,7 +79,7 @@ function signup() {
             Already have an account?
             <Link
               to="/login"
-              className="underline underline-offset-4 text-[#F43F5E] ml-2"
+              className="underline underline-offset-4 text-[#FB7185] ml-2"
             >
               Login here
             </Link>
@@ -74,4 +90,4 @@ function signup() {
   )
 }
 
-export default signup
+export default Signup
