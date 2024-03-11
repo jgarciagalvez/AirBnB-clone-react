@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+axios.defaults.withCredentials = true
 
 function signup() {
   const classNameInput = 'border border-[#E5E7EB] rounded-md h-10 pl-4'
