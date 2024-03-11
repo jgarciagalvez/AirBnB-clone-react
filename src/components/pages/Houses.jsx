@@ -21,7 +21,7 @@ function Houses() {
     <div className="container mx-auto">
       <Nav />
       {/* Filters */}
-      <Filters />
+      <Filters setHouses={setHouses} />
 
       {/* Show HouseCards for filtered Houses */}
       <div className="grid gap-4 grid-cols-5 grid-rows-2 mt-3">
