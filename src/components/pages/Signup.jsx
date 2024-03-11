@@ -62,6 +62,9 @@ function Signup() {
             )}
             <label className={classNameLabel}>Password</label>
             <input type="password" name="password" className={classNameInput} />
+            {!validEmail && (
+              <span className="text-[#FB7185]">Password too short</span>
+            )}
             <label className={classNameLabel}>Profile Picture</label>
             <input
               type="text"
