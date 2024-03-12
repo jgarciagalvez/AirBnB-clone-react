@@ -12,6 +12,9 @@ function Listings() {
   const [notValidEntry, setNotValidEntry] = useState({})
   const [newListing, setNewListing] = useState({})
 
+  // Input Styling
+  const inputStyle = 'border w-full rounded-sm pl-1'
+
   // Function to validate form
   const validateForm = (obj) => {
     // Define Arrays with Requirements
@@ -22,31 +25,26 @@ function Listings() {
     let result = {}
     // Iterate through each object key
     Object.keys(obj).forEach((key) => {
-      // Special validation for photos
-      if (key === 'photos') {
-        const hasError = obj[key].length !== 9 // hasError
+      if (mustBeString.includes(key)) {
+        // Validate if the property is a string and not a pure number
+        const hasError = !isNaN(parseFloat(obj[key])) && isFinite(obj[key])
         result[key] = hasError
-      } else if (mustBeString.includes(key)) {
-        // Validate if the property is a string
-        const hasError = typeof Number(obj[key]) === 'number'
-        result[key] = hasError
-
-        // replace ternary for if else
       } else if (mustBeNumber.includes(key)) {
-        // Validate if the property is a number
-        const hasError = typeof Number(obj[key]) !== 'number'
+        // Validate if the property can be converted to a number and is not NaN
+        const value = Number(obj[key])
+        const hasError = isNaN(value)
         result[key] = hasError
       }
     })
 
     setNotValidEntry(result)
 
-    return Object.values(result).reduce((value, acc) => {
-      return value && acc
-    }, false)
+    // IsValidNumber will be equal to true if any of the duplas have hasError: true
+    return Object.values(result).includes(true)
   }
 
   // Create new house Function
+
   const createHouse = async (e) => {
     // Prevent page reload on form submission
     e.preventDefault()
@@ -59,9 +57,9 @@ function Listings() {
     setNewListing(formObj)
 
     // Validate data before sending to API
-
     const formHasErrors = validateForm(formObj)
 
+    // Return in case there are errors and prevent sending data to API
     if (formHasErrors) {
       return
     }
@@ -96,8 +94,8 @@ function Listings() {
               name="location"
               required
               type="text"
-              defaultValue="2" // Bali, Indonesia"
-              className="border w-full rounded-sm"
+              placeholder="Bali, Indonesia"
+              className={inputStyle}
             />
             {notValidEntry.location && <NotStringError />}
             <div className="text-xs text-stone-500 mb-2 mt-2">Bedrooms</div>
@@ -105,8 +103,8 @@ function Listings() {
               name="rooms"
               required
               type="text"
-              defaultValue=" Bali"
-              className="border w-full rounded-sm"
+              placeholder="2"
+              className={inputStyle}
             />
             {notValidEntry.rooms && <NotNumberError />}
             <div className="text-xs text-stone-500 mb-2 mt-2">Bathrooms</div>
@@ -114,9 +112,10 @@ function Listings() {
               name="bathrooms"
               required
               type="text"
-              defaultValue=" 1"
-              className="border w-full rounded-sm"
+              placeholder="1"
+              className={inputStyle}
             />
+            {notValidEntry.bathrooms && <NotNumberError />}
             <div className="text-xs text-stone-500 mb-2 mt-2">
               Price per Night
             </div>
@@ -124,8 +123,8 @@ function Listings() {
               name="price"
               required
               type="text"
-              defaultValue=" $100"
-              className="border w-full rounded-sm"
+              placeholder="$100"
+              className={inputStyle}
             />
             {notValidEntry.price && <NotNumberError />}
             <div className="text-xs text-stone-500 mb-2 mt-2">Description</div>
@@ -133,10 +132,10 @@ function Listings() {
               name="description"
               required
               rows="3"
-              defaultValue=" Tell us about your place..."
-              className="border w-full rounded-sm text-s"
+              placeholder="Tell us about your place..."
+              className="border w-full rounded-sm text-s pl-1"
             ></textarea>
-            {notValidEntry.location && <NotStringError />}
+            {notValidEntry.description && <NotStringError />}
             <button className=" bg-[#FF5A5F] border text-white pt-2 pb-2 pl-3 pr-3 rounded-md ">
               List House
             </button>
@@ -172,16 +171,14 @@ function PhotoInput() {
       name="photos"
       required
       type="url"
-      defaultValue="https://www.h0tm0mpics.com/830298507.jpg"
-      className="border w-full rounded-sm mb-2 "
+      placeholder="https://www.h0tm0mpics.com/830298507.jpg"
+      className="border w-full rounded-sm mb-2 pl-1"
     />
   )
 }
 
 function NotNumberError() {
-  return (
-    <div className="text-red-600 text-sm">Please provide a valid number</div>
-  )
+  return <div className="text-red-600 text-sm">Please use only numbers</div>
 }
 
 function NotStringError() {
