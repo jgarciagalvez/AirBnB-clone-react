@@ -20,6 +20,7 @@ function Login() {
     if (response.data.error) {
       setError(response.data.error)
     } else {
+      localStorage.setItem('isLoggedIn', true)
       navigate('/')
     }
   }
