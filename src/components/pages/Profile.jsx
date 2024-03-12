@@ -32,6 +32,7 @@ function Profile() {
       } else {
         setUser(response.data)
         setPicture(response.data.picture)
+        localStorage.setItem('picture', response.data.picture)
       }
     } catch (e) {
       alert(e.message)

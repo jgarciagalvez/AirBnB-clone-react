@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+
 function Nav() {
-  const [picture, setPicture] = useState('')
-  const isLoggedIn = localStorage.getItem('isLoggedin')
+  const picture = localStorage.getItem('picture')
+  const isLoggedIn = localStorage.getItem('isLoggedIn')
+
   return (
     <div className="flex justify-between items-center">
       <Link to="/">
@@ -35,7 +36,8 @@ function Nav() {
               <img
                 className="h-4 inline rounded-lg mr-1"
                 src={picture}
-                alt="AirBnB Logo"
+                alt="profile_picture"
+                value="profile_picture"
               />
               Profile
             </Link>
