@@ -12,8 +12,41 @@ function Listings() {
   const [notValidEntry, setNotValidEntry] = useState({})
   const [newListing, setNewListing] = useState({})
 
-  // Create new house Function
+  // Function to validate form
+  const validateForm = (obj) => {
+    // Define Arrays with Requirements
 
+    let mustBeString = ['location', 'description']
+    let mustBeNumber = ['rooms', 'price', 'bathrooms']
+
+    let result = {}
+    // Iterate through each object key
+    Object.keys(obj).forEach((key) => {
+      // Special validation for photos
+      if (key === 'photos') {
+        const hasError = obj[key].length !== 9 // hasError
+        result[key] = hasError
+      } else if (mustBeString.includes(key)) {
+        // Validate if the property is a string
+        const hasError = typeof Number(obj[key]) === 'number'
+        result[key] = hasError
+
+        // replace ternary for if else
+      } else if (mustBeNumber.includes(key)) {
+        // Validate if the property is a number
+        const hasError = typeof Number(obj[key]) !== 'number'
+        result[key] = hasError
+      }
+    })
+
+    setNotValidEntry(result)
+
+    return Object.values(result).reduce((value, acc) => {
+      return value && acc
+    }, false)
+  }
+
+  // Create new house Function
   const createHouse = async (e) => {
     // Prevent page reload on form submission
     e.preventDefault()
@@ -21,38 +54,17 @@ function Listings() {
     // Get data from the form
 
     let form = new FormData(e.target)
-    let listing = Object.fromEntries(form.entries())
-    listing.photos = form.getAll('photos')
-    setNewListing(listing)
+    let formObj = Object.fromEntries(form.entries())
+    formObj.photos = form.getAll('photos')
+    setNewListing(formObj)
 
     // Validate data before sending to API
 
-    const validateForm = (obj) => {
-      // Define Arrays with Requirements
-      let mustBeString = ['location', 'description']
-      let mustBeNumber = ['rooms', 'price', 'bathrooms']
+    const formHasErrors = validateForm(formObj)
 
-      // Iterate through each object key
-      Object.keys(obj).forEach((key) => {
-        // Special validation for photos
-        if (key === 'photos') {
-          obj[key].length === 9
-            ? setNotValidEntry((notValidEntry.key = false))
-            : setNotValidEntry((notValidEntry.key = true))
-        } else if (mustBeString.includes(key)) {
-          // Validate if the property is a string
-          obj[key] === 'string'
-            ? setNotValidEntry((notValidEntry.key = false))
-            : setNotValidEntry((notValidEntry.key = true))
-        } else if (mustBeNumber.includes(key)) {
-          // Validate if the property is a number
-          obj[key] === 'number'
-            ? setNotValidEntry((notValidEntry.key = true))
-            : setNotValidEntry((notValidEntry.key = false))
-        }
-      })
+    if (formHasErrors) {
+      return
     }
-    validateForm()
 
     // Send validated data to the API
     try {
@@ -84,7 +96,7 @@ function Listings() {
               name="location"
               required
               type="text"
-              placeholder=" Bali, Indonesia"
+              defaultValue="2" // Bali, Indonesia"
               className="border w-full rounded-sm"
             />
             {notValidEntry.location && <NotStringError />}
@@ -93,7 +105,7 @@ function Listings() {
               name="rooms"
               required
               type="text"
-              placeholder=" 2"
+              defaultValue=" Bali"
               className="border w-full rounded-sm"
             />
             {notValidEntry.rooms && <NotNumberError />}
@@ -102,7 +114,7 @@ function Listings() {
               name="bathrooms"
               required
               type="text"
-              placeholder=" 1"
+              defaultValue=" 1"
               className="border w-full rounded-sm"
             />
             <div className="text-xs text-stone-500 mb-2 mt-2">
@@ -112,7 +124,7 @@ function Listings() {
               name="price"
               required
               type="text"
-              placeholder=" $100"
+              defaultValue=" $100"
               className="border w-full rounded-sm"
             />
             {notValidEntry.price && <NotNumberError />}
@@ -121,7 +133,7 @@ function Listings() {
               name="description"
               required
               rows="3"
-              placeholder=" Tell us about your place..."
+              defaultValue=" Tell us about your place..."
               className="border w-full rounded-sm text-s"
             ></textarea>
             {notValidEntry.location && <NotStringError />}
@@ -160,7 +172,7 @@ function PhotoInput() {
       name="photos"
       required
       type="url"
-      placeholder="https://www.h0tm0mpics.com/830298507.jpg"
+      defaultValue="https://www.h0tm0mpics.com/830298507.jpg"
       className="border w-full rounded-sm mb-2 "
     />
   )
