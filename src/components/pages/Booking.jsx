@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { differenceInCalendarDays } from 'date-fns'
+import axios from 'axios'
 
 function BookingForm({ house }) {
   // Create useState variables for form
@@ -8,6 +9,7 @@ function BookingForm({ house }) {
   const [endDate, setEndDate] = useState(null)
   const [nights, setNights] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
+  const [bookingConfirmed, setBookingConfirmed] = useState(false)
 
   // Calculate nights and update variable when either startDate or endDate are changed
   useEffect(() => {
@@ -20,6 +22,34 @@ function BookingForm({ house }) {
     setTotalPrice(nights * house.price)
   }, [nights, house.price])
 
+  const createBooking = async (e) => {
+    // Step 1: Prevent the browser from reloading
+    e.preventDefault()
+    //Step 2: get data from form
+    const form = new FormData(e.target)
+    let formObject = Object.fromEntries(form.entries())
+
+    const newBooking = {
+      house_id: house.id,
+      from_date: formObject.from_date,
+      to_date: formObject.to_date,
+      message: formObject.message
+    }
+    try {
+      const response = await axios.post(
+        'https://haiku-bnb.onrender.com/bookings',
+        newBooking
+      )
+      if (response.data.booking_id) {
+        setBookingConfirmed(true)
+      }
+    } catch (error) {
+      console.error('Error creating booking', error)
+    }
+  }
+  if (bookingConfirmed) {
+    return <p>Thank you for your reservation!</p>
+  }
   return (
     <div className="col-span-1">
       <div className="grid gap-2 border rounded border-[#E5E7EB] p-3 mb-4">
@@ -27,7 +57,7 @@ function BookingForm({ house }) {
           ${house.price}
           <span className="text-sm text-gray-400"> / night</span>
         </h6>
-        <form className="flex flex-col gap-2 w-full ">
+        <form onSubmit={createBooking} className="flex flex-col gap-2 w-full ">
           <div className="flex gap-2">
             <div className="flex flex-col">
               <label className="text-sm font-thin text-gray-400">
@@ -37,6 +67,7 @@ function BookingForm({ house }) {
                 onChange={(e) => setStartDate(e.target.value)}
                 className="border gap-2 pl-1"
                 type="date"
+                name="from_date"
               />
             </div>
             <div className="flex flex-col">
@@ -47,6 +78,7 @@ function BookingForm({ house }) {
                 onChange={(e) => setEndDate(e.target.value)}
                 className="border pl-1"
                 type="date"
+                name="to_date"
               />
             </div>
           </div>
@@ -54,6 +86,7 @@ function BookingForm({ house }) {
             rows="7"
             className="border w-full resize-none pl-1"
             placeholder="Please send a message to the host..."
+            name="message"
           ></textarea>
           <div className="flex justify-between items-center">
             <TotalBookingSpan nights={nights} totalPrice={totalPrice} />
@@ -74,7 +107,7 @@ function TotalBookingSpan({ nights, totalPrice }) {
   // Don't display anything if nights = 0
 
   if (nights === 0) {
-    return <div></div>
+    return <></>
   }
   // Throws error if nights is negative
 
@@ -96,17 +129,3 @@ function TotalBookingSpan({ nights, totalPrice }) {
 }
 
 export default BookingForm
-
-// ERROR
-// Cannot access '__WEBPACK_DEFAULT_EXPORT__' before initialization
-// ReferenceError: Cannot access '__WEBPACK_DEFAULT_EXPORT__' before initialization
-//     at Module.default (https://expert-telegram-6677gr5464qfrrgj-3000.app.github.dev/static/js/bundle.js:294:42)
-//     at ./src/components/pages/House.jsx (https://expert-telegram-6677gr5464qfrrgj-3000.app.github.dev/static/js/bundle.js:530:111)
-//     at options.factory (https://expert-telegram-6677gr5464qfrrgj-3000.app.github.dev/static/js/bundle.js:72932:31)
-//     at __webpack_require__ (https://expert-telegram-6677gr5464qfrrgj-3000.app.github.dev/static/js/bundle.js:72361:32)
-//     at fn (https://expert-telegram-6677gr5464qfrrgj-3000.app.github.dev/static/js/bundle.js:72590:21)
-//     at ./src/Routes.jsx (https://expert-telegram-6677gr5464qfrrgj-3000.app.github.dev/static/js/bundle.js:18:81)
-//     at options.factory (https://expert-telegram-6677gr5464qfrrgj-3000.app.github.dev/static/js/bundle.js:72932:31)
-//     at __webpack_require__ (https://expert-telegram-6677gr5464qfrrgj-3000.app.github.dev/static/js/bundle.js:72361:32)
-//     at fn (https://expert-telegram-6677gr5464qfrrgj-3000.app.github.dev/static/js/bundle.js:72590:21)
-//     at ./src/index.js (https://expert-telegram-6677gr5464qfrrgj-3000.app.github.dev/static/js/bundle.js:3637:65)
