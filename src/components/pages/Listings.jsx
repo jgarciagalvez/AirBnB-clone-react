@@ -1,16 +1,28 @@
-import { houses } from '../../dummyData'
 import HouseCard from '../ui/HouseCard'
 import Nav from '../ui/Nav'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function Listings() {
   // Define useState variables (using dummy data for listings)
 
-  const [listings, setListings] = useState(houses)
+  const [listings, setListings] = useState([])
   const [error, setError] = useState('')
   const [notValidEntry, setNotValidEntry] = useState({})
   const [newListing, setNewListing] = useState({})
+
+  // Get Listings Data from API
+
+  const getListings = async () => {
+    let { data } = await axios.get('https://haiku-bnb.onrender.com/listings')
+    // Verify if 'data' is an array before setting 'listings'. This is crucial because 'listings.map' is used later in the code.
+
+    Array.isArray(data) && setListings(data)
+  }
+
+  useEffect(() => {
+    getListings()
+  }, [])
 
   // Input Styling
   const inputStyle = 'border w-full rounded-sm pl-1'
@@ -136,7 +148,7 @@ function Listings() {
               className="border w-full rounded-sm text-s pl-1"
             ></textarea>
             {notValidEntry.description && <NotStringError />}
-            <button className=" bg-[#FF5A5F] border text-white pt-2 pb-2 pl-3 pr-3 rounded-md ">
+            <button className=" bg-[#FB7185] border text-white py-1 px-2 rounded-md ">
               List House
             </button>
             {error && <div className="text-red-700">{error}</div>}
@@ -155,7 +167,7 @@ function Listings() {
 
       {/* Render the house cards for the listings */}
       <div className="grid grid-cols-5 gap-2">
-        {houses.map((listing, id) => (
+        {listings.map((listing, id) => (
           <HouseCard key={id} house={listing} isListing={true} />
         ))}
       </div>
