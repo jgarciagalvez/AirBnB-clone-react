@@ -15,9 +15,10 @@ function Profile() {
   const logout = async () => {
     try {
       const { data } = await axios.get('https://haiku-bnb.onrender.com/logout')
-      console.log({ data })
-      localStorage.removeItem('isLoggedIn')
-      navigate('/')
+      if (data.message.includes('logged out')) {
+        localStorage.removeItem('isLoggedIn')
+        navigate('/')
+      }
     } catch (err) {
       alert(err.message)
     }
