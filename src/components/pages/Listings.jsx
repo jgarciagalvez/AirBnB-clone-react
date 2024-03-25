@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function Listings() {
-  // Define useState variables (using dummy data for listings)
+  // Define useState variables
 
   const [listings, setListings] = useState([])
   const [error, setError] = useState('')
