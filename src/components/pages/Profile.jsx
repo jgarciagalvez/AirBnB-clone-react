@@ -6,12 +6,16 @@ import { useNavigate } from 'react-router-dom'
 axios.defaults.withCredentials = true
 
 function Profile() {
+  // Styling variables
   const classNameInput = 'border border-[#E5E7EB] rounded-sm h-10 w-full pl-4'
   const classNameLabel = 'text-[#64748B] pb-1 mt-4 block'
+
+  // UseState Variables
   const [user, setUser] = useState({})
   const [picture, setPicture] = useState('')
   const navigate = useNavigate()
 
+  //Log User Out
   const logout = async () => {
     try {
       const { data } = await axios.get('https://haiku-bnb.onrender.com/logout')
@@ -27,7 +31,6 @@ function Profile() {
   const getData = async () => {
     try {
       const response = await axios.get('https://haiku-bnb.onrender.com/profile')
-      console.log('userdata', response.data)
       if (response.data.error) {
         navigate('/')
       } else {
@@ -42,20 +45,20 @@ function Profile() {
 
   useEffect(() => {
     getData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Modify User with Form Inputs
   const modifyUser = async (e) => {
     e.preventDefault()
     const form = new FormData(e.target)
     const formObj = Object.fromEntries(form.entries())
-    console.log(formObj)
     try {
       const { data } = await axios.patch(
         'https://haiku-bnb.onrender.com/profile',
         formObj
       )
-      console.log(data)
-      alert('your changes have been saved')
+      data && alert('your changes have been saved')
     } catch (e) {
       alert(e.message)
     }
