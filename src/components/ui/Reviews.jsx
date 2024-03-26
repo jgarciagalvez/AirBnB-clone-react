@@ -34,9 +34,7 @@ export default function Reviews(props) {
       </div>
       <div className="space-y-3">
         {reviews.map((review, i) => (
-          <React.Fragment key={i}>
-            <Review review={review} />
-          </React.Fragment>
+          <Review key={i} review={review} />
         ))}
       </div>
     </div>

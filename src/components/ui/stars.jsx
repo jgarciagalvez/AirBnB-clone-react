@@ -3,7 +3,7 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 function Stars({ rating }) {
   const arr = [...Array(Math.floor(rating ?? 0))]
-  return [
+  return (
     <div>
       {arr.map((star, i) => {
         return (
@@ -13,7 +13,7 @@ function Stars({ rating }) {
         )
       })}
     </div>
-  ]
+  )
 }
 
 export default Stars

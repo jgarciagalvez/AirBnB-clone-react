@@ -25,8 +25,8 @@ function Houses() {
 
       {/* Show HouseCards for filtered Houses */}
       <div className="grid gap-4 grid-cols-5 grid-rows-2 mt-3">
-        {houses.map((house) => (
-          <HouseCard key={house.id} house={house} />
+        {houses.map((house, id) => (
+          <HouseCard key={id} house={house} />
         ))}
       </div>
     </div>
