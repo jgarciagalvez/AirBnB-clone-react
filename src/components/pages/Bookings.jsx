@@ -26,12 +26,7 @@ function Bookings() {
       {bookings && bookings.length > 0 ? (
         <div className="grid md:grid-cols-5 gap-3 sm:grid-cols-2">
           {bookings.map((booking, id) => (
-            <HouseCard
-              house={booking.house}
-              key={id}
-              booking={booking}
-              isBooking={true}
-            />
+            <HouseCard house={booking} key={id} isBooking={true} />
           ))}
         </div>
       ) : (

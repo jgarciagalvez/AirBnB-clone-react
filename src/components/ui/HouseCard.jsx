@@ -5,31 +5,16 @@ import Stars from './stars'
 
 function HouseCard(props) {
   // Extract props into variables
-
-  const booking = props.booking
   const isBooking = props.isBooking
   const house = props.house
   const isListing = props.isListing
 
-  // Build the booking part
-  const bookingPart = (
-    <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
-      <span className="text-xs mt-2 ">
-        {booking ? booking.arrival + ' - ' + booking.departure : null}
-      </span>
-      <div className="font-bold text-sm mb-2">3 nights = $350</div>
-    </div>
-  )
-
+  // JSx
   return (
     <Link to={`/houses/${house.house_id}`}>
       <div className="border border-solid border-stone-200 rounded-lg gap-3 hover:shadow-lg">
         <div className="rounded-t-lg justify-center">
-          <img
-            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png"
-            alt="House Photos"
-            className="rounded-t-lg"
-          />
+          <img src={house.photo} alt="House Photos" className="rounded-t-lg" />
         </div>
         <div className="p-2">
           <p className="font-bold text-l">{house.location}</p>
@@ -45,7 +30,7 @@ function HouseCard(props) {
               <div className="">{house.rating}</div>
             </div>
             <div className="flex gap-2 items-center">
-              <div className="">34</div>
+              <div className="">{house.reviews_count}</div>
               <div className="">
                 <FontAwesomeIcon
                   icon={faCommentDots}
@@ -54,6 +39,8 @@ function HouseCard(props) {
               </div>
             </div>
           </div>
+
+          {/* Shows Listing Info if listing */}
           {isListing && (
             <div className="grid grid-cols-4 gap-2 mt-2">
               <Link to={`/houses/${house.house_id}`}>
@@ -68,7 +55,18 @@ function HouseCard(props) {
               </Link>
             </div>
           )}
-          {isBooking ? bookingPart : null}
+
+          {/* Shows Booking info if Booking */}
+          {isBooking && (
+            <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
+              <span className="text-xs mt-2 ">
+                house.from_date + ' - ' + house.to_date
+              </span>
+              <div className="font-bold text-sm mb-2">
+                house.nights +' nights = $'+house.price_total
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </Link>
