@@ -8,39 +8,43 @@ function BookingForm({ house }) {
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
   const [nights, setNights] = useState(0)
+  const [message, setMessage] = useState('')
   const [totalPrice, setTotalPrice] = useState(0)
   const [bookingConfirmed, setBookingConfirmed] = useState(false)
 
-  // Calculate nights and update variable when either startDate or endDate are changed
+  // Calculate number of nights and totalPrice to show in booking form
   useEffect(() => {
-    if (startDate && endDate)
-      setNights(differenceInCalendarDays(endDate, startDate))
+    if (startDate && endDate) {
+      let nights = differenceInCalendarDays(endDate, startDate)
+      setNights(nights)
+      let total = nights * house.price
+      setTotalPrice(total)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [startDate, endDate])
 
-  // Calculate totalPrice when nights is higher than 0
-  useEffect(() => {
-    setTotalPrice(nights * house.price)
-  }, [nights, house.price])
-
+  // Create Booking
   const createBooking = async (e) => {
-    // Step 1: Prevent the browser from reloading
     e.preventDefault()
-    //Step 2: get data from form
+
+    // Form
     const form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
 
     const newBooking = {
-      house_id: house.id,
+      house_id: house.house_id,
       from_date: formObject.from_date,
       to_date: formObject.to_date,
       message: formObject.message
     }
+
+    // API call
     try {
-      const response = await axios.post(
+      const { data } = await axios.post(
         'https://haiku-bnb.onrender.com/bookings',
         newBooking
       )
-      if (response.data.booking_id) {
+      if (data.booking_id) {
         setBookingConfirmed(true)
       }
     } catch (error) {
@@ -50,6 +54,8 @@ function BookingForm({ house }) {
   if (bookingConfirmed) {
     return <p>Thank you for your reservation!</p>
   }
+
+  // JSX
   return (
     <div className="col-span-1">
       <div className="grid gap-2 border rounded border-[#E5E7EB] p-3 mb-4">
@@ -83,16 +89,19 @@ function BookingForm({ house }) {
             </div>
           </div>
           <textarea
+            onChange={(e) => setMessage(e.target.value)}
             rows="7"
             className="border w-full resize-none pl-1"
             placeholder="Please send a message to the host..."
             name="message"
+            required
           ></textarea>
           <div className="flex justify-between items-center">
+            {/* Show total nights and total price on form */}
             <TotalBookingSpan nights={nights} totalPrice={totalPrice} />
             <button
               className="rounded bg-[#FB7185] text-white p-1 px-2 disabled:bg-gray-300"
-              disabled={nights <= 0}
+              disabled={nights <= 0 || message === ''}
             >
               Reserve
             </button>
@@ -103,14 +112,14 @@ function BookingForm({ house }) {
   )
 }
 
+// Booking information to show under booking form
 function TotalBookingSpan({ nights, totalPrice }) {
   // Don't display anything if nights = 0
-
   if (nights === 0) {
     return <></>
   }
-  // Throws error if nights is negative
 
+  // Throws error if nights is negative
   if (nights < 0) {
     return (
       <span className="font-bold text-red-700">
@@ -119,8 +128,8 @@ function TotalBookingSpan({ nights, totalPrice }) {
       </span>
     )
   }
-  // If nights >= 0, we render the span with the number of nights and total price
 
+  // If nights >= 0, we render the span with the number of nights and total price
   return (
     <span>
       {nights} nights =<span className="font-bold"> $ {totalPrice}</span>

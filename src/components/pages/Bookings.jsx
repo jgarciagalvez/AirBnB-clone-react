@@ -10,8 +10,8 @@ function Bookings() {
   // Get Listings Data from API
   const getBookings = async () => {
     let { data } = await axios.get('https://haiku-bnb.onrender.com/bookings')
-    // Verify if 'data' is an array before setting 'bookings'. This is crucial because 'bookings.map' is used later in the code.
 
+    // Verify if 'data' is an array before setting 'bookings'. This is crucial because 'bookings.map' is used later in the code.
     Array.isArray(data) && setBookings(data)
   }
 
@@ -19,6 +19,7 @@ function Bookings() {
     getBookings()
   }, [])
 
+  // JSX
   return (
     <div className="container mx-auto">
       <Nav />
