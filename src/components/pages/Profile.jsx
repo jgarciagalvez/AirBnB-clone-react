@@ -58,7 +58,9 @@ function Profile() {
         'https://haiku-bnb.onrender.com/profile',
         formObj
       )
-      data && alert('your changes have been saved')
+
+      // Handle API response
+      data.error ? alert(data.error) : alert('your changes have been saved')
     } catch (e) {
       alert(e.message)
     }
