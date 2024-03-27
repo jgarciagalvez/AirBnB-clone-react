@@ -5,18 +5,16 @@ import axios from 'axios'
 
 function Listings() {
   // Define useState variables
-
   const [listings, setListings] = useState([])
   const [error, setError] = useState('')
   const [notValidEntry, setNotValidEntry] = useState({})
   const [newListing, setNewListing] = useState({})
 
   // Get Listings Data from API
-
   const getListings = async () => {
     let { data } = await axios.get('https://haiku-bnb.onrender.com/listings')
-    // Verify if 'data' is an array before setting 'listings'. This is crucial because 'listings.map' is used later in the code.
 
+    // Verify if 'data' is an array before setting 'listings'. This is crucial because 'listings.map' is used later in the code.
     Array.isArray(data) && setListings(data)
   }
 
@@ -24,17 +22,18 @@ function Listings() {
     getListings()
   }, [])
 
-  // Input Styling
+  // Form's Input & Labe Styling
+  const labelStyle = 'text-xs text-stone-500 mb-2'
   const inputStyle = 'border w-full rounded-sm pl-1'
 
   // Function to validate form
   const validateForm = (obj) => {
     // Define Arrays with Requirements
-
     let mustBeString = ['location', 'description']
     let mustBeNumber = ['rooms', 'price', 'bathrooms']
 
     let result = {}
+
     // Iterate through each object key
     Object.keys(obj).forEach((key) => {
       if (mustBeString.includes(key)) {
@@ -56,13 +55,11 @@ function Listings() {
   }
 
   // Create new house Function
-
   const createHouse = async (e) => {
     // Prevent page reload on form submission
     e.preventDefault()
 
-    // Get data from the form
-
+    // Form
     let form = new FormData(e.target)
     let formObj = Object.fromEntries(form.entries())
     formObj.photos = form.getAll('photos')
@@ -93,7 +90,7 @@ function Listings() {
     setListings([...listings, newListing])
   }
 
-  // Start JSX file
+  // JSX
   return (
     <div className="container mx-auto">
       <Nav />
@@ -101,7 +98,7 @@ function Listings() {
         <div className="grid grid-cols-2 gap-5 mb-3 border p-2 rounded">
           <div>
             <div className="mb-4">List a house</div>
-            <div className="text-xs text-stone-500 mb-2">Location</div>
+            <div className={labelStyle}>Location</div>
             <input
               name="location"
               required
@@ -110,7 +107,7 @@ function Listings() {
               className={inputStyle}
             />
             {notValidEntry.location && <NotStringError />}
-            <div className="text-xs text-stone-500 mb-2 mt-2">Bedrooms</div>
+            <div className={labelStyle}>Bedrooms</div>
             <input
               name="rooms"
               required
@@ -119,7 +116,7 @@ function Listings() {
               className={inputStyle}
             />
             {notValidEntry.rooms && <NotNumberError />}
-            <div className="text-xs text-stone-500 mb-2 mt-2">Bathrooms</div>
+            <div className={labelStyle}>Bathrooms</div>
             <input
               name="bathrooms"
               required
@@ -128,9 +125,7 @@ function Listings() {
               className={inputStyle}
             />
             {notValidEntry.bathrooms && <NotNumberError />}
-            <div className="text-xs text-stone-500 mb-2 mt-2">
-              Price per Night
-            </div>
+            <div className={labelStyle}>Price per Night</div>
             <input
               name="price"
               required
@@ -139,7 +134,7 @@ function Listings() {
               className={inputStyle}
             />
             {notValidEntry.price && <NotNumberError />}
-            <div className="text-xs text-stone-500 mb-2 mt-2">Description</div>
+            <div className={labelStyle}>Description</div>
             <textarea
               name="description"
               required
