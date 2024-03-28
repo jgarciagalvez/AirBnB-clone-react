@@ -60,10 +60,10 @@ function HouseCard(props) {
           {isBooking && (
             <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
               <span className="text-xs mt-2 ">
-                house.from_date + ' - ' + house.to_date
+                {house.from_date} - {house.to_date}
               </span>
               <div className="font-bold text-sm mb-2">
-                house.nights +' nights = $'+house.price_total
+                {house.nights} nights = $ {house.price_total}
               </div>
             </div>
           )}
