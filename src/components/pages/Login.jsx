@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { jwtDecode } from 'jwt-decode'
 import axios from 'axios'
+
 axios.defaults.withCredentials = true
 
 function Login() {
@@ -9,21 +9,40 @@ function Login() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
+  // Handle Form Data
   const submitForm = async (e) => {
     e.preventDefault()
 
-    const response = await axios.post('https://haiku-bnb.onrender.com/login', {
-      email: e.target.email.value,
-      password: e.target.password.value
-    })
-    if (response.data.error) {
-      setError(response.data.error)
-    } else {
+    // API call to verify credentials
+    try {
+      const response = await axios.post(
+        'https://haiku-bnb.onrender.com/login',
+        {
+          email: e.target.email.value,
+          password: e.target.password.value
+        }
+      )
+      if (response.data.error) {
+        setError(response.data.error)
+        return
+      }
       localStorage.setItem('isLoggedIn', true)
+    } catch (err) {
+      alert(err.message)
+    }
+
+    // Fetch Profile pic from API
+    try {
+      const response = await axios.get('https://haiku-bnb.onrender.com/profile')
+      const profilePic = response.data.picture
+      localStorage.setItem('picture', profilePic)
       navigate('/')
+    } catch (err) {
+      alert(err.message)
     }
   }
 
+  // JSX
   return (
     <div className="flex mx-auto justify-center m-5">
       <div className="border-2 p-6 rounded-md w-72">
