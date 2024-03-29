@@ -19,9 +19,9 @@ function HouseCard(props) {
         <div className="p-2">
           <p className="font-bold text-l">{house.location}</p>
           <p className="font-thin text-sm text-[#64748B]">
-            {house.rooms} Rooms · {house.bathrooms} Bathrooms
+            {house.bedrooms} Rooms · {house.bathrooms} Bathrooms
           </p>
-          <p className="font-bold text-lg mt-2">${house.price}</p>
+          <p className="font-bold text-lg mt-2">${house.price_per_night}</p>
           <div className="flex justify-between">
             <div className="flex gap-2">
               <div className="">
@@ -60,7 +60,7 @@ function HouseCard(props) {
           {isBooking && (
             <div className="bg-[#ECFDF5] flex flex-col gap-1 text-center">
               <span className="text-xs mt-2 ">
-                {house.from_date} - {house.to_date}
+                {house.check_in_date} - {house.check_out_date}
               </span>
               <div className="font-bold text-sm mb-2">
                 {house.nights} nights = $ {house.price_total}

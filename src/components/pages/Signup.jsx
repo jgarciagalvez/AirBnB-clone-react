@@ -28,13 +28,16 @@ function Signup() {
 
   const submitForm = async (e) => {
     e.preventDefault()
-    const response = await axios.post('https://haiku-bnb.onrender.com/signup', {
-      first_name: e.target.firstName.value,
-      last_name: e.target.lastName.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-      picture: e.target.profile.value
-    })
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL_PATH}/signup`,
+      {
+        first_name: e.target.first_name.value,
+        last_name: e.target.last_name.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        profile_pic: e.target.profile_pic.value
+      }
+    )
 
     if (response.data.error) {
       setError(response.data.error)
@@ -61,9 +64,9 @@ function Signup() {
         <div className="p-1">
           <form onSubmit={submitForm} className="flex flex-col">
             <label className={classNameLabel}>First Name</label>
-            <input type="text" name="firstName" className={classNameInput} />
+            <input type="text" name="first_name" className={classNameInput} />
             <label className={classNameLabel}>Last Name</label>
-            <input type="text" name="lastName" className={classNameInput} />
+            <input type="text" name="last_name" className={classNameInput} />
             <label className={classNameLabel}>Email</label>
             <input
               type="email"

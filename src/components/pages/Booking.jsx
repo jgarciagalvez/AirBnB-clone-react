@@ -17,7 +17,7 @@ function BookingForm({ house }) {
     if (startDate && endDate) {
       let nights = differenceInCalendarDays(endDate, startDate)
       setNights(nights)
-      let total = nights * house.price
+      let total = nights * house.price_per_night
       setTotalPrice(total)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -33,15 +33,15 @@ function BookingForm({ house }) {
 
     const newBooking = {
       house_id: house.house_id,
-      from_date: formObject.from_date,
-      to_date: formObject.to_date,
+      check_in_date: formObject.check_in_date,
+      check_out_date: formObject.check_out_date,
       message: formObject.message
     }
 
     // API call
     try {
       const { data } = await axios.post(
-        'https://haiku-bnb.onrender.com/bookings',
+        `${process.env.REACT_APP_API_URL_PATH}/bookings`,
         newBooking
       )
       if (data.booking_id) {
@@ -60,7 +60,7 @@ function BookingForm({ house }) {
     <div className="col-span-1">
       <div className="grid gap-2 border rounded border-[#E5E7EB] p-3 mb-4">
         <h6 className="font-bold">
-          ${house.price}
+          ${house.price_per_night}
           <span className="text-sm text-gray-400"> / night</span>
         </h6>
         <form onSubmit={createBooking} className="flex flex-col gap-2 w-full ">
@@ -73,7 +73,7 @@ function BookingForm({ house }) {
                 onChange={(e) => setStartDate(e.target.value)}
                 className="border gap-2 pl-1"
                 type="date"
-                name="from_date"
+                name="check_in_date"
               />
             </div>
             <div className="flex flex-col">
@@ -84,7 +84,7 @@ function BookingForm({ house }) {
                 onChange={(e) => setEndDate(e.target.value)}
                 className="border pl-1"
                 type="date"
-                name="to_date"
+                name="check_out_date"
               />
             </div>
           </div>

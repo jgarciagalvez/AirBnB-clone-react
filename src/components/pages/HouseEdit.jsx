@@ -12,7 +12,7 @@ function HouseEdit() {
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios.get(
-        'https://haiku-bnb.onrender.com/houses/' + id
+        `${process.env.REACT_APP_API_URL_PATH}/houses/` + id
       )
       setHouse(data)
     }
@@ -40,7 +40,7 @@ function HouseEdit() {
     // API patch call
     try {
       const { data } = await axios.patch(
-        'https://haiku-bnb.onrender.com/houses/' + id,
+        `${process.env.REACT_APP_API_URL_PATH}/houses/` + id,
         formObj
       )
 
@@ -70,10 +70,10 @@ function HouseEdit() {
 
             <div className={labelStyle}>Bedrooms</div>
             <input
-              name="rooms"
+              name="bedrooms"
               className={inputStyle}
               type="number"
-              defaultValue={house.rooms}
+              defaultValue={house.bedrooms}
             />
 
             <div className={labelStyle}>Bathrooms</div>
@@ -89,7 +89,7 @@ function HouseEdit() {
               name="price"
               className={inputStyle}
               type="number"
-              defaultValue={house.price}
+              defaultValue={house.price_per_night}
             />
 
             <div className={labelStyle}>Description</div>

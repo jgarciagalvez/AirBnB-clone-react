@@ -16,7 +16,7 @@ function Login() {
     // API call to verify credentials
     try {
       const response = await axios.post(
-        'https://haiku-bnb.onrender.com/login',
+        `${process.env.REACT_APP_API_URL_PATH}/login`,
         {
           email: e.target.email.value,
           password: e.target.password.value
@@ -33,7 +33,9 @@ function Login() {
 
     // Fetch Profile pic from API
     try {
-      const response = await axios.get('https://haiku-bnb.onrender.com/profile')
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL_PATH}/profile`
+      )
       const profilePic = response.data.picture
       localStorage.setItem('picture', profilePic)
       navigate('/')

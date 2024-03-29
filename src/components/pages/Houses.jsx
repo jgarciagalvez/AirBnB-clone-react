@@ -5,11 +5,13 @@ import { useState, useEffect } from 'react'
 
 import axios from 'axios'
 
+const apiUrl = process.env.REACT_APP_API_URL_PATH
+
 function Houses() {
   const [houses, setHouses] = useState([])
 
   const getHouses = async () => {
-    let { data } = await axios.get('https://haiku-bnb.onrender.com/houses')
+    let { data } = await axios.get(`${apiUrl}/houses`)
     setHouses(data)
   }
 

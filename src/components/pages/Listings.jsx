@@ -12,7 +12,9 @@ function Listings() {
 
   // Get Listings Data from API
   const getListings = async () => {
-    let { data } = await axios.get('https://haiku-bnb.onrender.com/listings')
+    let { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL_PATH}/listings`
+    )
 
     // Verify if 'data' is an array before setting 'listings'. This is crucial because 'listings.map' is used later in the code.
     Array.isArray(data) && setListings(data)
@@ -30,7 +32,7 @@ function Listings() {
   const validateForm = (obj) => {
     // Define Arrays with Requirements
     let mustBeString = ['location', 'description']
-    let mustBeNumber = ['rooms', 'price', 'bathrooms']
+    let mustBeNumber = ['bedrooms', 'price', 'bathrooms']
 
     let result = {}
 
@@ -76,7 +78,7 @@ function Listings() {
     // Send validated data to the API
     try {
       const response = await axios.post(
-        'https://haiku-bnb.onrender.com/houses',
+        `${process.env.REACT_APP_API_URL_PATH}/houses`,
         newListing
       )
       if (response.data.error) {
@@ -109,13 +111,13 @@ function Listings() {
             {notValidEntry.location && <NotStringError />}
             <div className={labelStyle}>Bedrooms</div>
             <input
-              name="rooms"
+              name="bedrooms"
               required
               type="text"
               placeholder="2"
               className={inputStyle}
             />
-            {notValidEntry.rooms && <NotNumberError />}
+            {notValidEntry.bedrooms && <NotNumberError />}
             <div className={labelStyle}>Bathrooms</div>
             <input
               name="bathrooms"

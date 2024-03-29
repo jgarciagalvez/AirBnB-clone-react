@@ -18,7 +18,9 @@ function Profile() {
   //Log User Out
   const logout = async () => {
     try {
-      const { data } = await axios.get('https://haiku-bnb.onrender.com/logout')
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL_PATH}/logout`
+      )
       if (data.message.includes('logged out')) {
         localStorage.removeItem('isLoggedIn')
         localStorage.removeItem('picture')
@@ -31,7 +33,9 @@ function Profile() {
 
   const getData = async () => {
     try {
-      const response = await axios.get('https://haiku-bnb.onrender.com/profile')
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL_PATH}/profile`
+      )
       if (response.data.error) {
         navigate('/')
       } else {
@@ -56,7 +60,7 @@ function Profile() {
     const formObj = Object.fromEntries(form.entries())
     try {
       const { data } = await axios.patch(
-        'https://haiku-bnb.onrender.com/profile',
+        `${process.env.REACT_APP_API_URL_PATH}/profile`,
         formObj
       )
 

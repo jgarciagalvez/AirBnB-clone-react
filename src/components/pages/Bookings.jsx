@@ -9,7 +9,9 @@ function Bookings() {
 
   // Get Listings Data from API
   const getBookings = async () => {
-    let { data } = await axios.get('https://haiku-bnb.onrender.com/bookings')
+    let { data } = await axios.get(
+      `${process.env.REACT_APP_API_URL_PATH}/bookings`
+    )
 
     // Verify if 'data' is an array before setting 'bookings'. This is crucial because 'bookings.map' is used later in the code.
     Array.isArray(data) && setBookings(data)
