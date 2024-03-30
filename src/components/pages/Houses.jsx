@@ -5,11 +5,13 @@ import { useState, useEffect } from 'react'
 
 import axios from 'axios'
 
+const apiUrl = process.env.REACT_APP_API_URL_PATH
+
 function Houses() {
   const [houses, setHouses] = useState([])
 
   const getHouses = async () => {
-    let { data } = await axios.get('https://haiku-bnb.onrender.com/houses')
+    let { data } = await axios.get(`${apiUrl}/houses`)
     setHouses(data)
   }
 
@@ -25,8 +27,8 @@ function Houses() {
 
       {/* Show HouseCards for filtered Houses */}
       <div className="grid gap-4 grid-cols-5 grid-rows-2 mt-3">
-        {houses.map((house) => (
-          <HouseCard key={house.id} house={house} />
+        {houses.map((house, id) => (
+          <HouseCard key={id} house={house} />
         ))}
       </div>
     </div>

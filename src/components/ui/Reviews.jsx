@@ -12,7 +12,8 @@ export default function Reviews(props) {
 
   useEffect(() => {
     const getReviews = async () => {
-      const url = 'https://haiku-bnb.onrender.com/reviews?house_id=' + house_id
+      const url =
+        `${process.env.REACT_APP_API_URL_PATH}/reviews?house_id=` + house_id
       const response = await axios.get(url)
       setReviews(response.data)
     }
@@ -34,9 +35,7 @@ export default function Reviews(props) {
       </div>
       <div className="space-y-3">
         {reviews.map((review, i) => (
-          <React.Fragment key={i}>
-            <Review review={review} />
-          </React.Fragment>
+          <Review key={i} review={review} />
         ))}
       </div>
     </div>
@@ -55,7 +54,7 @@ function Review({ review }) {
         <div>
           <div className="text-[#94A3B8] text-sm">{date}</div>
           <div className="text-lg">
-            {author.firstName} {author.lastName}
+            {author.first_name} {author.last_name}
           </div>
         </div>
       </div>

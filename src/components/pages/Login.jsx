@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
+
 axios.defaults.withCredentials = true
 
 function Login() {
@@ -8,25 +9,44 @@ function Login() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
+  // Handle Form Data
   const submitForm = async (e) => {
     e.preventDefault()
-    console.log(e.target.email.value)
-    console.log(e.target.password.value)
 
-    const response = await axios.post('https://haiku-bnb.onrender.com/login', {
-      email: e.target.email.value,
-      password: e.target.password.value
-    })
-    if (response.data.error) {
-      setError(response.data.error)
-    } else {
+    // API call to verify credentials
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL_PATH}/login`,
+        {
+          email: e.target.email.value,
+          password: e.target.password.value
+        }
+      )
+      if (response.data.error) {
+        setError(response.data.error)
+        return
+      }
       localStorage.setItem('isLoggedIn', true)
+    } catch (err) {
+      alert(err.message)
+    }
+
+    // Fetch Profile pic from API
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL_PATH}/profile`
+      )
+      const profilePic = response.data.picture
+      localStorage.setItem('picture', profilePic)
       navigate('/')
+    } catch (err) {
+      alert(err.message)
     }
   }
 
+  // JSX
   return (
-    <div class="flex mx-auto justify-center m-5">
+    <div className="flex mx-auto justify-center m-5">
       <div className="border-2 p-6 rounded-md w-72">
         <div className="flex justify-center">
           <img
@@ -39,11 +59,15 @@ function Login() {
         <form onSubmit={submitForm} className="grid gap-3">
           <div>
             <label className="text-stone-500 text-sm">Email:</label>
-            <input type="text" name="email" class="border w-full p-1" />
+            <input type="text" name="email" className="border w-full p-1" />
           </div>
           <div>
             <label className="text-stone-500 text-sm">Password:</label>
-            <input type="password" name="password" class="border w-full p-1" />
+            <input
+              type="password"
+              name="password"
+              className="border w-full p-1"
+            />
           </div>
           <button className=" bg-[#FF5A5F] border text-white p-2 rounded-md w-full">
             Login

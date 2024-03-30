@@ -6,18 +6,26 @@ import { useNavigate } from 'react-router-dom'
 axios.defaults.withCredentials = true
 
 function Profile() {
+  // Styling variables
   const classNameInput = 'border border-[#E5E7EB] rounded-sm h-10 w-full pl-4'
   const classNameLabel = 'text-[#64748B] pb-1 mt-4 block'
+
+  // UseState Variables
   const [user, setUser] = useState({})
   const [picture, setPicture] = useState('')
   const navigate = useNavigate()
 
+  //Log User Out
   const logout = async () => {
     try {
-      const { data } = await axios.get('https://haiku-bnb.onrender.com/logout')
-      console.log({ data })
-      localStorage.removeItem('isLoggedIn')
-      navigate('/')
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL_PATH}/logout`
+      )
+      if (data.message.includes('logged out')) {
+        localStorage.removeItem('isLoggedIn')
+        localStorage.removeItem('picture')
+        navigate('/')
+      }
     } catch (err) {
       alert(err.message)
     }
@@ -25,8 +33,9 @@ function Profile() {
 
   const getData = async () => {
     try {
-      const response = await axios.get('https://haiku-bnb.onrender.com/profile')
-      console.log('userdata', response.data)
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_URL_PATH}/profile`
+      )
       if (response.data.error) {
         navigate('/')
       } else {
@@ -41,20 +50,22 @@ function Profile() {
 
   useEffect(() => {
     getData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Modify User with Form Inputs
   const modifyUser = async (e) => {
     e.preventDefault()
     const form = new FormData(e.target)
     const formObj = Object.fromEntries(form.entries())
-    console.log(formObj)
     try {
       const { data } = await axios.patch(
-        'https://haiku-bnb.onrender.com/profile',
+        `${process.env.REACT_APP_API_URL_PATH}/profile`,
         formObj
       )
-      console.log(data)
-      alert('your changes have been saved')
+
+      // Handle API response
+      data.error ? alert(data.error) : alert('your changes have been saved')
     } catch (e) {
       alert(e.message)
     }

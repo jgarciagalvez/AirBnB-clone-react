@@ -19,7 +19,7 @@ function House() {
     const getHouse = async () => {
       try {
         const { data } = await axios.get(
-          'https://haiku-bnb.onrender.com/houses/' + id
+          `${process.env.REACT_APP_API_URL_PATH}/houses/` + id
         )
         setHouse(data)
       } catch (error) {
@@ -63,7 +63,7 @@ function House() {
                 {house ? house.location : <span>Location</span>}
               </p>
               <p className="text-xs text-[#64748B]">
-                {house?.rooms} Rooms · {house?.bathrooms} Bathrooms
+                {house?.bedrooms} Rooms · {house?.bathrooms} Bathrooms
               </p>
             </div>
             <div className=" flex gap-3">
@@ -81,7 +81,7 @@ function House() {
               <div>
                 <p className="text-sm text-[#64748B]">Hosted By</p>
                 <p>
-                  {house?.host.firstName} {house?.host.lastName}
+                  {house?.host.first_name} {house?.host.last_name}
                 </p>
               </div>
             </div>
