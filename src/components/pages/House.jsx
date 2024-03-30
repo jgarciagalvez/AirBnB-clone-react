@@ -11,7 +11,7 @@ import { faSpinner, faUser } from '@fortawesome/free-solid-svg-icons'
 function House() {
   // Declare house useState variable
   const [house, setHouse] = useState(undefined)
-  const { id } = useParams()
+  const { house_id } = useParams()
 
   // Fetch data from API when component loads
   useEffect(() => {
@@ -19,7 +19,7 @@ function House() {
     const getHouse = async () => {
       try {
         const { data } = await axios.get(
-          `${process.env.REACT_APP_API_URL_PATH}/houses/` + id
+          `${process.env.REACT_APP_API_URL_PATH}/houses/` + house_id
         )
         setHouse(data)
       } catch (error) {
@@ -28,7 +28,7 @@ function House() {
     }
 
     getHouse()
-  }, [id])
+  }, [house_id])
 
   return (
     <div className="container mx-auto">
