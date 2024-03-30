@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 function Nav() {
-  const picture = localStorage.getItem('picture')
+  const profile_pic = localStorage.getItem('profile_pic')
   const isLoggedIn = localStorage.getItem('isLoggedIn')
 
   return (
@@ -35,9 +35,8 @@ function Nav() {
             >
               <img
                 className="h-4 inline rounded-lg mr-1"
-                src={picture}
-                alt="profile_picture"
-                value="profile_picture"
+                src={profile_pic}
+                alt="profile_pic"
               />
               Profile
             </Link>

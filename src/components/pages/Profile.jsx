@@ -12,7 +12,6 @@ function Profile() {
 
   // UseState Variables
   const [user, setUser] = useState({})
-  const [picture, setPicture] = useState('')
   const navigate = useNavigate()
 
   //Log User Out
@@ -23,7 +22,7 @@ function Profile() {
       )
       if (data.message.includes('logged out')) {
         localStorage.removeItem('isLoggedIn')
-        localStorage.removeItem('picture')
+        localStorage.removeItem('profile_pic')
         navigate('/')
       }
     } catch (err) {
@@ -31,29 +30,31 @@ function Profile() {
     }
   }
 
-  const getData = async () => {
+  // Get Profile Data
+  const getProfileData = async () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL_PATH}/profile`
       )
-      if (response.data.error) {
-        navigate('/')
-      } else {
+      if (!response.data.error) {
         setUser(response.data)
-        setPicture(response.data.picture)
-        localStorage.setItem('picture', response.data.picture)
+      } else {
+        alert(response.data.error)
       }
     } catch (e) {
       alert(e.message)
     }
   }
 
+  const updateProfilePic = (url) => {
+    setUser({ ...user, profile_pic: url })
+  }
+
   useEffect(() => {
-    getData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    getProfileData()
   }, [])
 
-  // Modify User with Form Inputs
+  // Modify User
   const modifyUser = async (e) => {
     e.preventDefault()
     const form = new FormData(e.target)
@@ -65,7 +66,12 @@ function Profile() {
       )
 
       // Handle API response
-      data.error ? alert(data.error) : alert('your changes have been saved')
+      if (data.error) {
+        alert(data.error)
+      } else {
+        localStorage.setItem('profile_pic', formObj.profile_pic)
+        alert('your changes have been saved')
+      }
     } catch (e) {
       alert(e.message)
     }
@@ -80,16 +86,16 @@ function Profile() {
           <form className="gap-5" onSubmit={modifyUser}>
             <div className="flex items-center gap-3">
               <img
-                src={picture}
+                src={user.profile_pic}
                 alt="ProfilePic"
                 className="rounded-full bg-center w-20"
               />
               <input
-                name="picture"
+                name="profile_pic"
                 type="text"
                 className={classNameInput}
-                value={picture}
-                onChange={(e) => setPicture(e.target.value)}
+                value={user.profile_pic}
+                onChange={(e) => updateProfilePic(e.target.value)}
               />
             </div>
             <label className={classNameLabel}>First Name</label>

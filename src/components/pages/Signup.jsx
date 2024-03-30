@@ -93,7 +93,7 @@ function Signup() {
             <label className={classNameLabel}>Profile Picture</label>
             <input
               type="text"
-              name="profile"
+              name="profile_pic"
               placeholder="https://..."
               className={classNameInput}
             />

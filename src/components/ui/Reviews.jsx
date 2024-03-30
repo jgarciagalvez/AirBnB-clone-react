@@ -49,7 +49,11 @@ function Review({ review }) {
       {/* Author Box */}
       <div className="flex gap-2 items-center">
         <div className="w-12 h-12 border-2 border-solid border-white rounded-full">
-          <img className="rounded-full" src={author.picture} alt="reviewer" />
+          <img
+            className="rounded-full"
+            src={author.profile_pic}
+            alt="reviewer"
+          />
         </div>
         <div>
           <div className="text-[#94A3B8] text-sm">{date}</div>

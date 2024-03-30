@@ -70,7 +70,7 @@ function House() {
               {house ? (
                 <img
                   className="h-12 rounded-full"
-                  src={house.host.picture}
+                  src={house.host.profile_pic}
                   alt="user"
                 />
               ) : (

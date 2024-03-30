@@ -36,8 +36,8 @@ function Login() {
       const response = await axios.get(
         `${process.env.REACT_APP_API_URL_PATH}/profile`
       )
-      const profilePic = response.data.picture
-      localStorage.setItem('picture', profilePic)
+      const profile_pic = response.data.profile_pic
+      localStorage.setItem('profile_pic', profile_pic)
       navigate('/')
     } catch (err) {
       alert(err.message)
