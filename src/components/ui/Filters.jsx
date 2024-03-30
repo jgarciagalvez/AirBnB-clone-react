@@ -20,7 +20,7 @@ function Filters(props) {
     const getLocations = async () => {
       try {
         const response = await axios.get(
-          'https://haiku-bnb.onrender.com/locations'
+          `${process.env.REACT_APP_API_URL_PATH}/locations`
         )
         setLocations(response.data)
       } catch (error) {
@@ -34,7 +34,7 @@ function Filters(props) {
   const getHouses = async (query) => {
     try {
       const response = await axios.get(
-        'https://haiku-bnb.onrender.com/houses',
+        `${process.env.REACT_APP_API_URL_PATH}/houses`,
         {
           params: query
         }
@@ -142,7 +142,7 @@ function Filters(props) {
           <select name="sort" className="w-full border pl-7 py-1 rounded">
             <option value="">sort by</option>
             <option value="price">Price: low to high</option>
-            <option value="rooms">Rooms: high to low</option>
+            <option value="bedrooms">Rooms: high to low</option>
           </select>
         </div>
         <div className="w-full">

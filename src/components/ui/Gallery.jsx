@@ -15,9 +15,9 @@ function Gallery({ images }) {
       <div className="grid gap-1.5 md:grid-cols-3 sm:grid-cols-2hover:shadow-md rounded-md h-auto">
         {images.map((image, i) => (
           <div
+            key={i}
             className="bg-cover bg-center rounded cursor-pointer"
             onClick={(event) => {
-              console.log(image)
               setMainImage(image)
             }}
             style={{ height: '8rem', backgroundImage: 'url(' + image + ')' }}
