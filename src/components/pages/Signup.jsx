@@ -44,7 +44,7 @@ function Signup() {
       setError(response.data.error)
     } else {
       localStorage.setItem('isLoggedIn', true)
-      localStorage.setItem('picture', e.target.profile.value)
+      localStorage.setItem('profile_pic', e.target.profile_pic.value)
       navigate('/')
     }
   }
