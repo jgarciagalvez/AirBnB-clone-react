@@ -14,7 +14,6 @@ export default function Reviews(props) {
       const url =
         `${process.env.REACT_APP_API_URL_PATH}/reviews?house_id=` + house_id
       const response = await axios.get(url)
-      console.log(response.data)
       setReviews(response.data)
     }
     getReviews()

@@ -66,7 +66,6 @@ function Listings() {
     let formObj = Object.fromEntries(form.entries())
     formObj.photos = form.getAll('photos')
     setNewListing(formObj)
-    console.log('formObj: ', formObj)
 
     // Validate data before sending to API
     const formHasErrors = validateForm(formObj)
