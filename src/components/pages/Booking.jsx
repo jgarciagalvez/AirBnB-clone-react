@@ -35,7 +35,8 @@ function BookingForm({ house }) {
       house_id: house.house_id,
       check_in_date: formObject.check_in_date,
       check_out_date: formObject.check_out_date,
-      message: formObject.message
+      message: formObject.message,
+      price_per_night: house.price_per_night
     }
 
     // API call
@@ -44,7 +45,7 @@ function BookingForm({ house }) {
         `${process.env.REACT_APP_API_URL_PATH}/bookings`,
         newBooking
       )
-      if (data.booking_id) {
+      if (data[0].booking_id) {
         setBookingConfirmed(true)
       }
     } catch (error) {

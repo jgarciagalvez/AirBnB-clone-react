@@ -66,7 +66,7 @@ function HouseCard(props) {
               {house.check_in_date} - {house.check_out_date}
             </span>
             <div className="font-bold text-sm mb-2">
-              {house.nights} nights = $ {house.price_total}
+              {house.nights} nights = $ {house.total_price}
             </div>
           </div>
         )}

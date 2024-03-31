@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 
 function Bookings() {
   // Define useState Variables
-  const [bookings, setBookings] = useState([])
+  const [bookings, setBookings] = useState(undefined)
 
   // Get Listings Data from API
   const getBookings = async () => {
@@ -25,8 +25,12 @@ function Bookings() {
   return (
     <div className="container mx-auto">
       <Nav />
-      {bookings && bookings.length > 0 ? (
-        <div className="grid md:grid-cols-5 gap-3 sm:grid-cols-2">
+      {bookings === undefined ? (
+        <div className="flex items-center justify-center h-64">
+          <span className="text-xl font-semibold">Loading...</span>
+        </div>
+      ) : bookings && bookings.length > 0 ? (
+        <div className="grid m-4 md:grid-cols-5 gap-3 sm:grid-cols-2">
           {bookings.map((booking, id) => (
             <HouseCard house={booking} key={id} isBooking={true} />
           ))}
