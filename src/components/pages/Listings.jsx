@@ -66,6 +66,7 @@ function Listings() {
     let formObj = Object.fromEntries(form.entries())
     formObj.photos = form.getAll('photos')
     setNewListing(formObj)
+    console.log('formObj: ', formObj)
 
     // Validate data before sending to API
     const formHasErrors = validateForm(formObj)
@@ -79,7 +80,7 @@ function Listings() {
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL_PATH}/houses`,
-        newListing
+        formObj
       )
       if (response.data.error) {
         setError(response.data.error)
@@ -129,7 +130,7 @@ function Listings() {
             {notValidEntry.bathrooms && <NotNumberError />}
             <div className={labelStyle}>Price per Night</div>
             <input
-              name="price"
+              name="price_per_night"
               required
               type="text"
               placeholder="$100"

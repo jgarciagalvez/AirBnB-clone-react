@@ -86,7 +86,7 @@ function HouseEdit() {
 
             <div className={labelStyle}>Price per night</div>
             <input
-              name="price"
+              name="price_per_night"
               className={inputStyle}
               type="number"
               defaultValue={house.price_per_night}
