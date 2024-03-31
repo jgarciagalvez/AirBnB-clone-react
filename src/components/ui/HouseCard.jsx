@@ -32,7 +32,7 @@ function HouseCard(props) {
               <div className="">{house.rating}</div>
             </div>
             <div className="flex gap-2 items-center">
-              <div className="">{house.reviews_count}</div>
+              <div className="">{house.review_count}</div>
               <div className="">
                 <FontAwesomeIcon
                   icon={faCommentDots}

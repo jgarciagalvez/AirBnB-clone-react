@@ -96,7 +96,7 @@ function House() {
         <div className="flex justify-between border-t border-[#E5E7EB] pt-10">
           {/* Reviews List */}
           <div className="w-2/3 flex flex-col gap-5">
-            <Reviews house_id={house_id} />
+            <Reviews house={house ?? {}} />
           </div>
 
           {/* Leave a Review Form */}

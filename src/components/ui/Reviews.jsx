@@ -5,16 +5,16 @@ import React, { useState, useEffect } from 'react'
 import Stars from './stars'
 import axios from 'axios'
 
-export default function Reviews(props) {
+export default function Reviews({ house }) {
   const [reviews, setReviews] = useState([])
-  const house_id = props?.house_id ?? 1
+  const { house_id, rating, review_count } = house
 
   useEffect(() => {
     const getReviews = async () => {
       const url =
         `${process.env.REACT_APP_API_URL_PATH}/reviews?house_id=` + house_id
-      const response = await axios.get(url)
-      setReviews(response.data)
+      const { data } = await axios.get(url)
+      Array.isArray(data) && setReviews(data)
     }
     getReviews()
   }, [house_id])
@@ -24,9 +24,9 @@ export default function Reviews(props) {
       <div className="flex gap-2 items-center">
         <div className="inline">
           <FontAwesomeIcon icon={faCommentDots} className="text-[#94A3B8]" />
-          <span className="text-lg font-bold"> 34 Reviews</span>
+          <span className="text-lg font-bold"> {review_count} Reviews</span>
           <div>
-            <span className="text-sm">Average Rating: 2.3 </span>
+            <span className="text-sm">Average Rating: {rating} </span>
 
             <FontAwesomeIcon icon={faStar} className="text-[#FBBF24]" />
           </div>
@@ -41,7 +41,7 @@ export default function Reviews(props) {
 }
 
 function Review({ review }) {
-  const { author, content, rating, date } = review
+  const { author, review_text, rating, date } = review
   return (
     <div className="border border-solid border-[#E5E7EB] rounded-lg p-3 m-2 text-sm">
       {/* Author Box */}
@@ -65,7 +65,7 @@ function Review({ review }) {
         <span>{rating}</span>
       </div>
       <div className="flex">
-        <p>{content}</p>
+        <p>{review_text}</p>
       </div>
     </div>
   )
