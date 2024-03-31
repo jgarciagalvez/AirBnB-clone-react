@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import React, { useState, useEffect } from 'react'
-// import { reviews } from '../../dummyData.js'
 import Stars from './stars'
 import axios from 'axios'
 
@@ -15,6 +14,7 @@ export default function Reviews(props) {
       const url =
         `${process.env.REACT_APP_API_URL_PATH}/reviews?house_id=` + house_id
       const response = await axios.get(url)
+      console.log(response.data)
       setReviews(response.data)
     }
     getReviews()
@@ -34,9 +34,8 @@ export default function Reviews(props) {
         </div>
       </div>
       <div className="space-y-3">
-        {reviews.map((review, i) => (
-          <Review key={i} review={review} />
-        ))}
+        {Array.isArray(reviews) &&
+          reviews?.map((review, i) => <Review key={i} review={review} />)}
       </div>
     </div>
   )
