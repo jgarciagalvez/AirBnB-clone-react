@@ -6,7 +6,6 @@ axios.defaults.withCredentials = true
 
 function ReviewForm(props) {
   // UseState Variables
-  //   const [isAllowedToReview, SetIsAllowedToReview] = useState(null)
   const [error, setError] = useState(undefined)
   const [isReviewSubmitted, SetIsReviewSubmitted] = useState(false)
   const { house_id } = props
@@ -36,8 +35,6 @@ function ReviewForm(props) {
         `${process.env.REACT_APP_API_URL_PATH}/reviews`,
         review
       )
-      console.log('Review: ', review)
-      console.log('Response Data: ', data)
       if (data.review_id) {
         SetIsReviewSubmitted(true)
       }
