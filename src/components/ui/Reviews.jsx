@@ -41,7 +41,7 @@ export default function Reviews({ house }) {
 }
 
 function Review({ review }) {
-  const { author, review_text, rating, date } = review
+  const { author, review_text, rating, review_date } = review
   return (
     <div className="border border-solid border-[#E5E7EB] rounded-lg p-3 m-2 text-sm">
       {/* Author Box */}
@@ -54,7 +54,7 @@ function Review({ review }) {
           />
         </div>
         <div>
-          <div className="text-[#94A3B8] text-sm">{date}</div>
+          <div className="text-[#94A3B8] text-sm">{review_date}</div>
           <div className="text-lg">
             {author.first_name} {author.last_name}
           </div>

@@ -3,6 +3,7 @@ import Reviews from '../ui/Reviews'
 import Nav from '../ui/Nav'
 import axios from 'axios'
 import BookingForm from '../ui/BookingForm.jsx'
+import ReviewForm from '../ui/ReviewForm.jsx'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -101,28 +102,9 @@ function House() {
 
           {/* Leave a Review Form */}
           <div className="align-top">
-            <LeaveReviewForm />
+            <ReviewForm house_id={house_id} />
           </div>
         </div>
-      </div>
-    </div>
-  )
-}
-
-// COMPONENT: Booking Form
-
-;<BookingForm />
-
-function LeaveReviewForm() {
-  return (
-    <div className="border rounded border-[#E5E7EB] p-4 gap-3">
-      <div>Leave a Review</div>
-      <div>0</div>
-      <div>
-        <textarea className="w-full border-black-500 border-2 rows-5"></textarea>
-        <button className="rounded bg-[#FB7185] text-white p-1 px-2">
-          Submit
-        </button>
       </div>
     </div>
   )

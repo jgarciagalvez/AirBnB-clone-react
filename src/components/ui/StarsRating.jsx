@@ -14,7 +14,7 @@ function StarsRating() {
           <label key={i}>
             <input
               type="radio"
-              name="star"
+              name="rating"
               value={ratingValue}
               className="hidden"
               onClick={() => setRating(ratingValue)}
