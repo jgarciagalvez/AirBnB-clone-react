@@ -26,19 +26,13 @@ function Login() {
         setError(response.data.error)
         return
       }
-      localStorage.setItem('isLoggedIn', true)
-    } catch (err) {
-      alert(err.message)
-    }
 
-    // Fetch Profile pic from API
-    try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL_PATH}/profile`
-      )
-      const profile_pic = response.data.profile_pic
-      localStorage.setItem('profile_pic', profile_pic)
+      // Local Storage
+      localStorage.setItem('isLoggedIn', true)
+      localStorage.setItem('profile_pic', response.data.profile_pic)
+
       navigate('/')
+      // Errors
     } catch (err) {
       alert(err.message)
     }
