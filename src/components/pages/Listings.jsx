@@ -8,7 +8,6 @@ function Listings() {
   const [listings, setListings] = useState([])
   const [error, setError] = useState('')
   const [notValidEntry, setNotValidEntry] = useState({})
-  const [newListing, setNewListing] = useState({})
 
   // Get Listings Data from API
   const getListings = async () => {
@@ -65,7 +64,6 @@ function Listings() {
     let form = new FormData(e.target)
     let formObj = Object.fromEntries(form.entries())
     formObj.photos = form.getAll('photos')
-    setNewListing(formObj)
 
     // Validate data before sending to API
     const formHasErrors = validateForm(formObj)
@@ -79,17 +77,17 @@ function Listings() {
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL_PATH}/houses`,
-        newListing
+        formObj
       )
       if (response.data.error) {
         setError(response.data.error)
+      } else {
+        // Update listings array with new house
+        setListings([...listings, response.data])
       }
     } catch (err) {
       setError(err.message)
     }
-
-    // Update listings array with new house
-    setListings([...listings, newListing])
   }
 
   // JSX
@@ -129,7 +127,7 @@ function Listings() {
             {notValidEntry.bathrooms && <NotNumberError />}
             <div className={labelStyle}>Price per Night</div>
             <input
-              name="price"
+              name="price_per_night"
               required
               type="text"
               placeholder="$100"

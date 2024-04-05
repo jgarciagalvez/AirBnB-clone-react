@@ -5,11 +5,13 @@ import axios from 'axios'
 axios.defaults.withCredentials = true
 
 function Signup() {
+  // Variables and State
   const [validEmail, setValidEmail] = useState(true)
   const [validPassword, setValidPassword] = useState(true)
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
+  // Input Validation
   const validateEmail = (email) => {
     if (email.includes('@') && email.includes('.')) {
       setValidEmail(true)
@@ -17,7 +19,6 @@ function Signup() {
       setValidEmail(false)
     }
   }
-
   const validatePassword = (password) => {
     if (password.length >= 6) {
       setValidPassword(true)
@@ -26,6 +27,7 @@ function Signup() {
     }
   }
 
+  // Form Submit
   const submitForm = async (e) => {
     e.preventDefault()
     const response = await axios.post(
@@ -38,19 +40,20 @@ function Signup() {
         profile_pic: e.target.profile_pic.value
       }
     )
-
     if (response.data.error) {
       setError(response.data.error)
     } else {
       localStorage.setItem('isLoggedIn', true)
-      localStorage.setItem('picture', e.target.profile.value)
+      localStorage.setItem('profile_pic', e.target.profile_pic.value)
       navigate('/')
     }
   }
 
+  // Form elements styling
   const classNameInput = 'border border-[#E5E7EB] rounded-md h-10 pl-4'
   const classNameLabel = 'text-[#64748B] pb-1 mt-2 font-extralight'
 
+  // JSX
   return (
     <div className="container mx-auto flex justify-center">
       <div className="border border-[#E5E7EB] shadow-md rounded-lg p-4 mt-4 w-[320px]">
@@ -90,7 +93,7 @@ function Signup() {
             <label className={classNameLabel}>Profile Picture</label>
             <input
               type="text"
-              name="profile"
+              name="profile_pic"
               placeholder="https://..."
               className={classNameInput}
             />

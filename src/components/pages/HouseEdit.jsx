@@ -5,19 +5,19 @@ import axios from 'axios'
 
 function HouseEdit() {
   // Define useState Variables
-  const { id } = useParams()
+  const { house_id } = useParams()
   const [house, setHouse] = useState(undefined)
 
   // Get House Data from API
   useEffect(() => {
     const getData = async () => {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL_PATH}/houses/` + id
+        `${process.env.REACT_APP_API_URL_PATH}/houses/` + house_id
       )
       setHouse(data)
     }
     getData()
-  }, [id])
+  }, [house_id])
 
   if (house === undefined) {
     return <div>loading...</div>
@@ -40,7 +40,7 @@ function HouseEdit() {
     // API patch call
     try {
       const { data } = await axios.patch(
-        `${process.env.REACT_APP_API_URL_PATH}/houses/` + id,
+        `${process.env.REACT_APP_API_URL_PATH}/houses/` + house_id,
         formObj
       )
 
@@ -86,7 +86,7 @@ function HouseEdit() {
 
             <div className={labelStyle}>Price per night</div>
             <input
-              name="price"
+              name="price_per_night"
               className={inputStyle}
               type="number"
               defaultValue={house.price_per_night}
