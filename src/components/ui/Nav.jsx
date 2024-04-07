@@ -44,8 +44,14 @@ function Nav() {
         ) : (
           <>
             <Link
-              to="/login"
+              to="/signup"
               className="border h-7 rounded-md p-1 hover:shadow-md"
+            >
+              Signup
+            </Link>
+            <Link
+              to="/login"
+              className="border h-7 rounded-md p-1 px-2 hover:shadow-md mr-4"
             >
               Login
             </Link>
