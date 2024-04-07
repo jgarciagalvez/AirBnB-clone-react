@@ -55,7 +55,13 @@ function Signup() {
 
   // JSX
   return (
-    <div className="container mx-auto flex justify-center">
+    <div className="container mx-auto flex flex-col justify-center items-center min-h-screen">
+      <div className="flex flex-col justify-center items-center text-red-500 text-sm text-center">
+        * This is a simple React App and security might not be top class. Please
+        do not use real passwords or add sensitive info. <br />* Esto es una
+        aplicación sencilla de React. No uses contraseñas reales o información
+        personal sensible.
+      </div>
       <div className="border border-[#E5E7EB] shadow-md rounded-lg p-4 mt-4 w-[320px]">
         <div className="flex justify-center">
           <img
@@ -64,6 +70,7 @@ function Signup() {
             className="h-[24px]"
           />
         </div>
+
         <div className="p-1">
           <form onSubmit={submitForm} className="flex flex-col">
             <label className={classNameLabel}>First Name</label>
