@@ -45,14 +45,14 @@ function HouseCard(props) {
 
         {/* Shows Listing Info if listing */}
         {isListing && (
-          <div className="grid grid-cols-4 gap-2 mt-2">
+          <div className="flex gap-2 mt-2">
             <Link to={`/houses/${house.house_id}`}>
-              <button className="bg-[#FB7185] text-white border py-1 px-3 col-span-1 rounded-md">
+              <button className="bg-[#FB7185] text-white border py-1 px-3 rounded-md">
                 View
               </button>
             </Link>
             <Link to={`/houses/${house.house_id}/edit`}>
-              <button className="bg-[#FB7185] text-white border py-1 px-3 col-span-1 rounded-md">
+              <button className="bg-[#FB7185] text-white border py-1 px-3 rounded-md">
                 Edit
               </button>
             </Link>
