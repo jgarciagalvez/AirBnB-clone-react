@@ -95,7 +95,7 @@ function Listings() {
     <div className="container mx-auto">
       <Nav />
       <form onSubmit={(e) => createHouse(e)}>
-        <div className="grid md:grid-cols-2 gap-5 mb-5 border p-2 rounded">
+        <div className="grid md:grid-cols-2 gap-5 mx-3 mb-5 border p-2 rounded">
           <div>
             <div className="mb-4">List a house</div>
             <div className={labelStyle}>Location</div>
@@ -163,7 +163,7 @@ function Listings() {
       </form>
 
       {/* Render the house cards for the listings */}
-      <div className="grid m-4 md:grid-cols-5 gap-3 sm:grid-cols-2">
+      <div className="grid m-3 mt-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:grid-cols-2">
         {listings.map((listing, id) => (
           <HouseCard key={id} house={listing} isListing={true} />
         ))}

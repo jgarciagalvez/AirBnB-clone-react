@@ -5,7 +5,7 @@ function Nav() {
   const isLoggedIn = localStorage.getItem('isLoggedIn')
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center mx-3">
       <Link to="/">
         <img
           src="https://www.vectorlogo.zone/logos/airbnb/airbnb-ar21.svg"

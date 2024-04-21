@@ -26,8 +26,8 @@ function Houses() {
       <Filters setHouses={setHouses} />
 
       {/* Show HouseCards for filtered Houses */}
-      <div className="flex justify-center m-2">
-        <div className="grid gap-4 mt-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="flex justify-center mt-5 mx-3">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {houses.map((house, id) => (
             <HouseCard key={id} house={house} />
           ))}

@@ -30,7 +30,7 @@ function Bookings() {
           <span className="text-xl font-semibold">Loading...</span>
         </div>
       ) : bookings && bookings.length > 0 ? (
-        <div className="grid m-4 md:grid-cols-5 gap-3 sm:grid-cols-2">
+        <div className="grid m-3 mt-5 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:grid-cols-2">
           {bookings.map((booking, id) => (
             <HouseCard house={booking} key={id} isBooking={true} />
           ))}
