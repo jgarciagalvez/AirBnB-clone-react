@@ -56,9 +56,9 @@ function HouseEdit() {
     <div className="container mx-auto">
       <Nav />
       <form onSubmit={(e) => updateHouse(e)}>
-        <div className="grid grid-cols-2 gap-5 mb-3 border p-2 rounded">
+        <div className="grid md:grid-cols-2 gap-5 mb-5 border p-2 rounded">
           <div>
-            <h2 className="mb-4 mt-3">Edit Your Listing</h2>
+            <div className="mb-4">Edit Your Listing</div>
 
             <div className={labelStyle}>Location</div>
             <input
@@ -98,22 +98,13 @@ function HouseEdit() {
               className={inputStyle}
               defaultValue={house.description}
             ></textarea>
-
-            <div className="my-2">
-              <button className="bg-[#FB7185] border text-white py-1 px-2 rounded-md">
-                Save Changes
-              </button>
-              <Link to="/Listings">
-                <button className="border border-gray-300 py-1 px-2 ml-2 rounded-md hover:bg-red-500 hover:text-white">
-                  Cancel
-                </button>
-              </Link>
-            </div>
           </div>
 
           {/* Photos input */}
           <div>
-            <div className="text-xs text-stone-500 mt-10 mb-2">Photos</div>
+            <div className="text-xs text-stone-500 md:mt-10 mt-1 mb-2">
+              Photos
+            </div>
             {house.images.map((image, i) => (
               <input
                 name="photos"
@@ -124,6 +115,16 @@ function HouseEdit() {
                 required
               />
             ))}
+          </div>
+          <div className="my-2">
+            <button className="bg-[#FB7185] border text-white py-1 px-2 rounded-md">
+              Save Changes
+            </button>
+            <Link to="/Listings">
+              <button className="border border-gray-300 py-1 px-2 ml-2 rounded-md hover:bg-red-500 hover:text-white">
+                Cancel
+              </button>
+            </Link>
           </div>
         </div>
       </form>

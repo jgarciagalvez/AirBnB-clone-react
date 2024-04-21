@@ -95,7 +95,7 @@ function Listings() {
     <div className="container mx-auto">
       <Nav />
       <form onSubmit={(e) => createHouse(e)}>
-        <div className="grid grid-cols-2 gap-5 mb-3 border p-2 rounded">
+        <div className="grid md:grid-cols-2 gap-5 mb-5 border p-2 rounded">
           <div>
             <div className="mb-4">List a house</div>
             <div className={labelStyle}>Location</div>
@@ -143,25 +143,27 @@ function Listings() {
               className="border w-full rounded-sm text-s pl-1"
             ></textarea>
             {notValidEntry.description && <NotStringError />}
-            <button className=" bg-[#FB7185] border text-white py-1 px-2 rounded-md ">
-              List House
-            </button>
-            {error && <div className="text-red-700">{error}</div>}
           </div>
 
           <div>
-            <div className="text-xs text-stone-500 mt-10 mb-2">Photos</div>
+            <div className="text-xs text-stone-500 md:mt-10 mt-1 mb-2">
+              Photos
+            </div>
 
             {/* Create the 9 image input fields */}
             {[...Array(9)].map((_, index) => (
               <PhotoInput key={index} />
             ))}
           </div>
+          <button className="w-1/3 bg-[#FB7185] border text-white py-1 px-2 rounded-md ">
+            List House
+          </button>
+          {error && <div className="text-red-700">{error}</div>}
         </div>
       </form>
 
       {/* Render the house cards for the listings */}
-      <div className="grid grid-cols-5 gap-2">
+      <div className="grid m-4 md:grid-cols-5 gap-3 sm:grid-cols-2">
         {listings.map((listing, id) => (
           <HouseCard key={id} house={listing} isListing={true} />
         ))}
