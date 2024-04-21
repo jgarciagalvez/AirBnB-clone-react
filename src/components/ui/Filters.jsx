@@ -85,13 +85,18 @@ function Filters(props) {
 
   return (
     <form onSubmit={(e) => submitForm(e)}>
-      <div className="flex justify-between gap-5 grid-cols-5 grid-rows-1 m-3 bg-stone-100 p-2">
-        <div className="w-full">
+      {/* Center elements vertically and wrap them, make adjustments for small screens */}
+      <div className="grid grid-cols-2 gap-2 md:flex justify-between items-center m-3 bg-stone-100 p-2 rounded-md">
+        {/* Location Filter */}
+        <div className="md:w-full">
           <FontAwesomeIcon
             icon={faHouse}
-            className="absolute mt-2 ml-1.5 w-4 h-4 pointer-events-none"
+            className="absolute m-2 w-4 h-4 pointer-events-none"
           />
-          <select name="location" className="w-full border pl-7 py-1 rounded">
+          <select
+            name="location"
+            className="w-full border pl-7 py-1 rounded text-sm"
+          >
             <option value="">Any Location</option>
             {/* Display an option for each location from the database */}
             {locations.map((location, i) => (
@@ -101,51 +106,54 @@ function Filters(props) {
             ))}
           </select>
         </div>
-        <div className="w-full">
-          <div className="">
-            <FontAwesomeIcon
-              icon={faBed}
-              className="absolute mt-2 ml-1.5 w-4 h-4 pointer-events-none"
-            />
-          </div>
-          <div className="">
-            <select
-              name="min_rooms"
-              className="w-full border pl-7 py-1 rounded"
-            >
-              <option value="">Any Rooms</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          </div>
+        {/* Rooms Filter */}
+        <div className="md:w-full">
+          <FontAwesomeIcon
+            icon={faBed}
+            className="absolute m-2 w-4 h-4 pointer-events-none"
+          />
+          <select
+            name="min_rooms"
+            className="w-full border pl-7 py-1 rounded text-sm"
+          >
+            <option value="">Any Rooms</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
         </div>
-        <div className="w-full">
+        {/* Max Price Filter */}
+        <div className="md:w-full">
           <FontAwesomeIcon
             icon={faDollarSign}
-            className="absolute mt-2 ml-1.5 w-4 h-4 pointer-events-none"
+            className="absolute m-2 w-4 h-4 pointer-events-none"
           />
           <input
             name="max_price"
-            className="border pl-7 py-1 rounded"
+            className="w-full border pl-7 py-1 rounded text-sm [&::-webkit-inner-spin-button]:appearance-none"
             type="number"
             placeholder="max price"
           />
         </div>
-        <div className="w-full">
+        {/* Sort Results */}
+        <div className="md:w-full">
           <FontAwesomeIcon
             icon={faSort}
-            className="absolute mt-2.5 ml-1.5 w-4 h-4 pointer-events-none"
+            className="absolute m-2 w-4 h-4 pointer-events-none"
           />
-          <select name="sort" className="w-full border pl-7 py-1 rounded">
+          <select
+            name="sort"
+            className="w-full border pl-7 py-1 rounded text-sm"
+          >
             <option value="">sort by</option>
             <option value="price">Price: low to high</option>
             <option value="bedrooms">Rooms: high to low</option>
           </select>
         </div>
-        <div className="w-full">
+        {/* Search Box 5 */}
+        <div className="md:w-full">
           <input
             name="search"
             className="w-full border pl-2 py-1 rounded text-sm"
@@ -153,8 +161,9 @@ function Filters(props) {
             placeholder="keywords..."
           />
         </div>
-        <div>
-          <button className=" bg-[#FF5A5F] border text-white p-2 rounded-md ">
+        {/* Button Container*/}
+        <div className=" md:w-full flex justify-end">
+          <button className="w-full bg-[#FF5A5F] border text-white p-1 rounded-md text-sm">
             Search
           </button>
         </div>
