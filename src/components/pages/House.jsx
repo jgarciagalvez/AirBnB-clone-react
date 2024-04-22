@@ -45,7 +45,7 @@ function House() {
         {house ? (
           <Gallery images={house.images} />
         ) : (
-          <div className="flex h-[396px] items-center justify-center border">
+          <div className="flex md:h-[396px] h-40 items-center justify-center border">
             <FontAwesomeIcon
               icon={faSpinner}
               className="text-lg animate-spin"
@@ -55,10 +55,10 @@ function House() {
 
         {/* House Info & Booking */}
 
-        <div className="flex justify-between ">
+        <div className="md:flex justify-between ">
           {/* House Info */}
 
-          <div className="w-2/3 flex flex-col gap-5">
+          <div className="md:w-2/3 flex flex-col gap-5 mb-5">
             <div>
               <p className="text-xl font-bold">
                 {house ? house.location : <span>Location</span>}
@@ -94,15 +94,15 @@ function House() {
         </div>
 
         {/* Reviews & Review Form*/}
-        <div className="flex justify-between border-t border-[#E5E7EB] pt-10">
-          {/* Reviews List */}
-          <div className="w-2/3 flex flex-col gap-5">
-            <Reviews house={house ?? {}} />
+        <div className="flex flex-col md:flex-row justify-between border-t border-[#E5E7EB] pt-10">
+          {/* Leave a Review Form */}
+          <div className="md:order-last align-top mb-5">
+            <ReviewForm house_id={house_id} />
           </div>
 
-          {/* Leave a Review Form */}
-          <div className="align-top">
-            <ReviewForm house_id={house_id} />
+          {/* Reviews List */}
+          <div className="md:w-2/3 flex flex-col gap-5">
+            <Reviews house={house ?? {}} />
           </div>
         </div>
       </div>

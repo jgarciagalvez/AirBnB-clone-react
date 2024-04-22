@@ -65,7 +65,7 @@ function BookingForm({ house }) {
           <span className="text-sm text-gray-400"> / night</span>
         </h6>
         <form onSubmit={createBooking} className="flex flex-col gap-2 w-full ">
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-col md:flex-row">
             <div className="flex flex-col">
               <label className="text-sm font-thin text-gray-400">
                 Check-in
