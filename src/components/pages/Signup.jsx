@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
+import Nav from '../ui/Nav'
 
 axios.defaults.withCredentials = true
 
@@ -55,71 +56,74 @@ function Signup() {
 
   // JSX
   return (
-    <div className="container mx-auto flex flex-col justify-center items-center min-h-screen">
-      <div className="flex flex-col justify-center items-center text-red-500 text-sm text-center">
-        * This is a simple React App and security might not be top class. Please
-        do not use real passwords or add sensitive info. <br />* Esto es una
-        aplicación sencilla de React. No uses contraseñas reales o información
-        personal sensible.
-      </div>
-      <div className="border border-[#E5E7EB] shadow-md rounded-lg p-4 mt-4 w-[320px]">
-        <div className="flex justify-center">
-          <img
-            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
-            alt="AirBnB Logo"
-            className="h-[24px]"
-          />
+    <div className="container mx-auto">
+      <Nav />
+      <div className="flex flex-col justify-center items-center min-h-screen mx-3">
+        <div className="text-center align-middle text-red-500 text-[8px] md:text-sm">
+          * This is a simple React App and security might not be top class.
+          Please do not use real passwords or add sensitive info. <br />* Esto
+          es una aplicación sencilla de React. No uses contraseñas reales o
+          información personal sensible.
         </div>
+        <div className="border border-[#E5E7EB] shadow-md rounded-lg p-4 my-4 md:w-1/3">
+          <div className="flex justify-center">
+            <img
+              src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
+              alt="AirBnB Logo"
+              className="h-[24px]"
+            />
+          </div>
 
-        <div className="p-1">
-          <form onSubmit={submitForm} className="flex flex-col">
-            <label className={classNameLabel}>First Name</label>
-            <input type="text" name="first_name" className={classNameInput} />
-            <label className={classNameLabel}>Last Name</label>
-            <input type="text" name="last_name" className={classNameInput} />
-            <label className={classNameLabel}>Email</label>
-            <input
-              type="email"
-              name="email"
-              onChange={(e) => validateEmail(e.target.value)}
-              className={classNameInput}
-            />
-            {!validEmail && (
-              <span className="text-[#FB7185]">Invalid Email</span>
-            )}
-            <label className={classNameLabel}>Password</label>
-            <input
-              type="password"
-              name="password"
-              onChange={(e) => validatePassword(e.target.value)}
-              className={classNameInput}
-            />
-            {!validPassword && (
-              <span className="text-[#FB7185]">Password too short</span>
-            )}
-            <label className={classNameLabel}>Profile Picture</label>
-            <input
-              type="text"
-              name="profile_pic"
-              placeholder="https://..."
-              className={classNameInput}
-            />
-            <button className="bg-[#FB7185] text-white text-lg p-2 my-5 rounded-md">
-              Register
-            </button>
-            <div className="text-red-500">{error}</div>
-          </form>
-        </div>
-        <div className="ml-1 text-sm">
-          <p className="font-extralight">
-            Already have an account?
-            <Link
-              to="/login"
-              className="underline underline-offset-4 text-[#FB7185] ml-2"
-            >
-              Login here
-            </Link>
-          </p>
+          <div className="p-1">
+            <form onSubmit={submitForm} className="flex flex-col">
+              <label className={classNameLabel}>First Name</label>
+              <input type="text" name="first_name" className={classNameInput} />
+              <label className={classNameLabel}>Last Name</label>
+              <input type="text" name="last_name" className={classNameInput} />
+              <label className={classNameLabel}>Email</label>
+              <input
+                type="email"
+                name="email"
+                onChange={(e) => validateEmail(e.target.value)}
+                className={classNameInput}
+              />
+              {!validEmail && (
+                <span className="text-[#FB7185]">Invalid Email</span>
+              )}
+              <label className={classNameLabel}>Password</label>
+              <input
+                type="password"
+                name="password"
+                onChange={(e) => validatePassword(e.target.value)}
+                className={classNameInput}
+              />
+              {!validPassword && (
+                <span className="text-[#FB7185]">Password too short</span>
+              )}
+              <label className={classNameLabel}>Profile Picture</label>
+              <input
+                type="text"
+                name="profile_pic"
+                placeholder="https://..."
+                className={classNameInput}
+              />
+              <button className="bg-[#FB7185] text-white text-lg p-2 my-5 rounded-md">
+                Register
+              </button>
+              <div className="text-red-500">{error}</div>
+            </form>
+          </div>
+          <div className="text-center align-middle text-sm">
+            <p className="font-extralight">Already have an account? </p>
+            <p className="font-extralight">
+              <Link
+                to="/login"
+                className="underline underline-offset-4 text-[#FB7185] ml-2"
+              >
+                Login here
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </div>
