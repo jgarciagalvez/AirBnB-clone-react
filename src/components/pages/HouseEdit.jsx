@@ -2,21 +2,38 @@ import { useEffect, useState } from 'react'
 import Nav from '../ui/Nav'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function HouseEdit() {
   // Define useState Variables
   const { house_id } = useParams()
   const [house, setHouse] = useState(undefined)
+  const navigate = useNavigate()
 
   // Get House Data from API
   useEffect(() => {
     const getData = async () => {
-      const { data } = await axios.get(
-        `${process.env.REACT_APP_API_URL_PATH}/houses/` + house_id
-      )
-      setHouse(data)
+      try {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_URL_PATH}/houses/` + house_id + '/edit'
+        )
+        if (!data.error) {
+          setHouse(data)
+
+          // Handle errors
+        } else if (data.error.includes('Property not found')) {
+          alert('Property not found')
+          navigate('/')
+        } else if (data.error.includes('authorisation')) {
+          alert('Please login to view this page')
+          navigate('/login')
+        }
+      } catch (e) {
+        alert(e.message)
+      }
     }
     getData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [house_id])
 
   if (house === undefined) {
