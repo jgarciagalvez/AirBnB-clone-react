@@ -40,7 +40,8 @@ function Profile() {
       if (!response.data.error) {
         setUser(response.data)
       } else {
-        alert(response.data.error)
+        alert('Please login to view this page')
+        navigate('/login')
       }
     } catch (e) {
       alert(e.message)
@@ -53,6 +54,7 @@ function Profile() {
 
   useEffect(() => {
     getProfileData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Modify User

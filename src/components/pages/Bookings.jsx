@@ -2,23 +2,34 @@ import Nav from '../ui/Nav'
 import HouseCard from '../ui/HouseCard'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function Bookings() {
   // Define useState Variables
   const [bookings, setBookings] = useState(undefined)
+  const navigate = useNavigate()
 
   // Get Listings Data from API
   const getBookings = async () => {
-    let { data } = await axios.get(
-      `${process.env.REACT_APP_API_URL_PATH}/bookings`
-    )
-
-    // Verify if 'data' is an array before setting 'bookings'. This is crucial because 'bookings.map' is used later in the code.
-    Array.isArray(data) && setBookings(data)
+    try {
+      let { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL_PATH}/bookings`
+      )
+      if (data.error) {
+        alert('Please login to view this page')
+        navigate('/login')
+      } else {
+        // Verify if 'data' is an array before setting 'bookings'. This is crucial because 'bookings.map' is used later in the code.
+        Array.isArray(data) && setBookings(data)
+      }
+    } catch (e) {
+      alert(e.message)
+    }
   }
 
   useEffect(() => {
     getBookings()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // JSX

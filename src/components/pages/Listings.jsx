@@ -2,25 +2,37 @@ import HouseCard from '../ui/HouseCard'
 import Nav from '../ui/Nav'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function Listings() {
   // Define useState variables
   const [listings, setListings] = useState([])
   const [error, setError] = useState('')
   const [notValidEntry, setNotValidEntry] = useState({})
+  const navigate = useNavigate()
 
   // Get Listings Data from API
   const getListings = async () => {
-    let { data } = await axios.get(
-      `${process.env.REACT_APP_API_URL_PATH}/listings`
-    )
-
-    // Verify if 'data' is an array before setting 'listings'. This is crucial because 'listings.map' is used later in the code.
-    Array.isArray(data) && setListings(data)
+    try {
+      let { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL_PATH}/listings`
+      )
+      console.log(data)
+      if (!data.error & Array.isArray(data)) {
+        setListings(data)
+        // Handle Unauthorized Access
+      } else if (data.error.includes('authorisation')) {
+        alert('Please login to view this page')
+        navigate('/login')
+      }
+    } catch (e) {
+      alert(e.message)
+    }
   }
 
   useEffect(() => {
     getListings()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // Form's Input & Labe Styling
